@@ -3,7 +3,8 @@
 ## Opis
 
 ### Wstęp
-    Celem projektu jest zaimplementowanie aplikacji pozwalającej przewidzieć cenę ---[do uzupełnienia]--- na podstawie dostarczanych przez użytkownika cech.
+    Celem projektu jest zaimplementowanie aplikacji pozwalającej przewidzieć cenę
+     ---[do uzupełnienia]--- na podstawie dostarczanych przez użytkownika cech.
 
 ### Zbiór Danych
 
