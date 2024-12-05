@@ -1,4 +1,4 @@
-# Projekt Big Data
+# Projekt Big Data - Predykcja Ceny Samochodów Używanych
 
 ## Opis
 
