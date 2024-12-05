@@ -4,11 +4,24 @@
 
 ### Wstęp
     Celem projektu jest zaimplementowanie aplikacji pozwalającej przewidzieć cenę
-     ---[do uzupełnienia]--- na podstawie dostarczanych przez użytkownika cech.
+    używanych samochodów na podstawie dostarczanych przez użytkownika cech.
 
 ### Zbiór Danych
 
-- Określić
+- Used Cars Price Prediction Dataset: https://www.kaggle.com/datasets/taeefnajib/used-car-price-prediction-dataset
+
+### Cechy zbioru
+
+1. Brand & Model: Identify the brand or company name along with the specific model of each vehicle.
+2. Model Year: Discover the manufacturing year of the vehicles, crucial for assessing depreciation and technology advancements.
+3. Mileage: Obtain the mileage of each vehicle, a key indicator of wear and tear and potential maintenance requirements.
+4. Fuel Type: Learn about the type of fuel the vehicles run on, whether it's gasoline, diesel, electric, or hybrid.
+5. Engine Type: Understand the engine specifications, shedding light on performance and efficiency.
+6. Transmission: Determine the transmission type, whether automatic, manual, or another variant.
+7. Exterior & Interior Colors: Explore the aesthetic aspects of the vehicles, including exterior and interior color options.
+8. Accident History: Discover whether a vehicle has a prior history of accidents or damage, crucial for informed decision-making.
+9. Clean Title: Evaluate the availability of a clean title, which can impact the vehicle's resale value and legal status.
+10. Price: Access the listed prices for each vehicle, aiding in price comparison and budgeting.
 
 ### Technologie
     - React
