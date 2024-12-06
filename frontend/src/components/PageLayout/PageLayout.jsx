@@ -5,9 +5,11 @@ import styles from "./PageLayout.module.css";
 const PageLayout = () => {
     return(
     <>
-        <div className={styles.layout}>
-            <Header text={"Place holder"}/>
-            <TextField text={"Place holder"}/>
+        <div className={styles.component}>
+            <div className={styles.layout}>
+                <Header text={"Place holder"}/>
+                <TextField text={"Place holder"}/>
+            </div>
         </div>
     </>
     )
