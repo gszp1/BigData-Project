@@ -1,6 +1,6 @@
-import Header from "../Header/Header.jsx";
-import TextField from "../TextField/TextField.jsx";
-import styles from "./PageLayout.module.css";
+import Header from "/src/components/Header/Header.jsx";
+import TextField from "/src/components/TextField/TextField.jsx";
+import styles from "/src/components/PageLayout/PageLayout.module.css";
 
 const PageLayout = () => {
     return(
