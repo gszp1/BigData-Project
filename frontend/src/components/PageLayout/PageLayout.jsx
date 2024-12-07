@@ -7,7 +7,7 @@ const PageLayout = () => {
     <>
         <div className={styles.component}>
             <div className={styles.layout}>
-                <Header text={"Place holder"}/>
+                <Header text={"CarWorthy"}/>
                 <TextField text={"Place holder"}/>
             </div>
         </div>

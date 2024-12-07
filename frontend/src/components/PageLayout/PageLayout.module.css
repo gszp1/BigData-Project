@@ -10,4 +10,22 @@
 }
 
 .layout {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+
+    width: 1024px;
+    height: auto;
+    min-height: 920px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    background-color: rgba(245, 245, 245, 0.92);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.9);
+    border-radius: 15px;
 }
