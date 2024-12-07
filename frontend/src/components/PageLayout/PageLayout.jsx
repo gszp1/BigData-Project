@@ -1,8 +1,8 @@
 import Banner from "/src/components/Banner/Banner.jsx";
-// import TextField from "/src/components/TextField/TextField.jsx";
 import ParagraphTitle from "/src/components/ParagraphTitle/ParagraphTitle.jsx";
+import TextField from "/src/components/TextField/TextField";
+import EstimateButton from "/src/components/EstimateButton/EstimateButton.jsx";
 import styles from "/src/components/PageLayout/PageLayout.module.css";
-import TextField from "../TextField/TextField";
 
 const PageLayout = () => {
     return(
@@ -19,13 +19,16 @@ const PageLayout = () => {
                 <TextField
                     text={'Looking to buy or sell a used car? Knowing its true market value is crucial. ' + 
                         'With CarWorthy, you can get an accurate price estimate for your car by entering a few simple details. ' +
-                        'Our advanced prediction model analyzes key factors to give you a fair and competitive price in just seconds.'}
+                        'Our advanced prediction model analyzes key factors to give you a fair and competitive price in just seconds.'
+                    }
                 />
                 <ParagraphTitle
                     title={"Our Model Does the Magic"}
                 />
                 <TextField
-                    text={"Using cutting-edge machine learning and data of thousands of used car listings, CarWorthy calculates the most accurate price based on market trends."}
+                    text={"Using cutting-edge machine learning and data of thousands of used car listings, " +
+                         "CarWorthy calculates the most accurate price based on market trends."
+                        }
                 />
                 <ParagraphTitle
                     title={"Get Your Price Estimate"}
@@ -33,6 +36,13 @@ const PageLayout = () => {
                 <TextField
                     text={"Receive an instant, detailed report with the estimated price range, helping you make informed decisions."}
                 />
+                <ParagraphTitle
+                    title={"Ready to get your estimate?"}
+                />
+                <TextField
+                    text={"If you entered all important data, click button below to get estimated price of your vehicle."}
+                />
+                <EstimateButton/>
             </div>
         </div>
     </>
