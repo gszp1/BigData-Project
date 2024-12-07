@@ -1,4 +1,4 @@
-import Header from "/src/components/Header/Header.jsx";
+import Banner from "/src/components/Banner/Banner.jsx";
 import TextField from "/src/components/TextField/TextField.jsx";
 import styles from "/src/components/PageLayout/PageLayout.module.css";
 
@@ -7,7 +7,7 @@ const PageLayout = () => {
     <>
         <div className={styles.component}>
             <div className={styles.layout}>
-                <Header text={"CarWorthy"}/>
+                <Banner banner_text={'CarWorthy'}/>
                 <TextField text={"Place holder"}/>
             </div>
         </div>
