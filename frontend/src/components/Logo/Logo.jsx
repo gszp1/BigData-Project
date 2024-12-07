@@ -1,10 +1,11 @@
 import styles from '@/components/Logo/Logo.module.css' 
+import icon from '@/assets/images/Page-Icon.png'
 
 const Logo = () => {
     return (
         <>
             <img
-                src='/frontend/src/assets/images/Page-Icon.png'
+                src={icon}
                 className = {styles.logo}
             />
         </>
