@@ -8,4 +8,8 @@
     font-style: oblique;
     font-size: 1.5rem;
     font-weight: 100;
+
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
