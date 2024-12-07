@@ -7,8 +7,14 @@ const PageLayout = () => {
     <>
         <div className={styles.component}>
             <div className={styles.layout}>
-                <Banner banner_text={'CarWorthy'}/>
-                <TextField text={"Place holder"}/>
+                <Banner
+                    bannerText={'CarWorthy'}
+                    subText={"Your Online Used Car Price Predictor"}
+                />
+                <TextField
+                    text={"Place holder"}
+                
+                />
             </div>
         </div>
     </>

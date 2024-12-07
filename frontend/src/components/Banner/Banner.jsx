@@ -4,19 +4,23 @@ import Logo from '/src/components/Logo/Logo.jsx';
 import Header from '/src/components/Header/Header.jsx';
 import styles from '/src/components/Banner/Banner.module.css'
 
-const Banner = ({ banner_text }) => {
+const Banner = ({ bannerText, subText }) => {
     return (
         <>
             <div className={styles.banner}>
                 <Logo/>
-                <Header text={banner_text}/>
+                <Header
+                    text={bannerText}
+                    subText={subText}
+                />
             </div>
         </>
     )    
 };
 
 Banner.propTypes = {
-    banner_text: PropTypes.string.isRequired
+    bannerText: PropTypes.string.isRequired,
+    subText: PropTypes.string
 };
 
 

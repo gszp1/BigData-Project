@@ -1,18 +1,24 @@
 import PropTypes from 'prop-types'
 import styles from '/src/components/Header/Header.module.css'
 
-const Header = ({ text }) => {
+const Header = ({ text, subText}) => {
     return (
         <>  
-            <h1 className={styles.component}>
-                {text}      
-            </h1>
+            <div className={styles.component}>
+                <h1 className={styles.header}>
+                    {text} 
+                </h1>
+                <p className={styles.sub_text}>
+                    {subText}
+                </p>
+            </div>
         </>
     )
 };
 
 Header.propTypes = {
-    text: PropTypes.string.isRequired
+    text: PropTypes.string.isRequired,
+    subText: PropTypes.string
 };
 
 export default Header;
