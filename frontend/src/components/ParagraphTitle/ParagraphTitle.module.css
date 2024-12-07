@@ -1,8 +1,8 @@
 .title {
     width: calc(100% - 30px);;
     margin-left: 30px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 30px;
+    margin-bottom: 5px;
 
     font-family: "Anton", cursive;
     font-style: oblique;
