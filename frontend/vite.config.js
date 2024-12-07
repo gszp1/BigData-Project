@@ -9,11 +9,13 @@ const __dirname = dirname(__filename);
 
 // https://vite.dev/config/
 export default defineConfig({
-  server: {port: 9091},
-  plugins: [react()],
-  resolve: {
-    alias: {
-      '@': resolve(__dirname, 'frontend')
-    }
-  }
-})
+    server: {port: 9091},
+    plugins: [react()],
+    resolve: {
+      alias: {
+        '@': resolve(__dirname, 'frontend')
+      }
+    },
+    base: '/BigData-Project/',
+  } 
+)
