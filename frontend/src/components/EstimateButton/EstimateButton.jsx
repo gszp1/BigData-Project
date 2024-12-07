@@ -1,6 +1,11 @@
+import PropTypes from 'prop-types';
 import styles from '@/components/EstimateButton/EstimateButton.module.css'
 
-const EstimateButton = () => {
+const EstimateButton = ({carData, setCarData}) => {
+    
+    const sendData = () => {
+    } 
+    
     return (
         <>
             <div className={styles.button_container}>
@@ -9,7 +14,13 @@ const EstimateButton = () => {
                 </button>
             </div>
         </>
-    )
+    );
+};
+
+EstimateButton.propTypes = {
+    carData: PropTypes.array.isRequired,
+    setCarData: PropTypes.func.isRequired
 }
+
 
 export default EstimateButton;
