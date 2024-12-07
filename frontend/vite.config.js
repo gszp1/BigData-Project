@@ -17,10 +17,6 @@ export default defineConfig({
   },
   build: {
     outDir: resolve(__dirname, 'dist'),
-    rollupOptions: {
-      input: resolve(__dirname, 'src/main.jsx'),
-      external: []
-    }
   },
   base: '/BigData-Project/'
 });
