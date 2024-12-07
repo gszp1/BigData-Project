@@ -3,8 +3,13 @@ import ParagraphTitle from "@/components/ParagraphTitle/ParagraphTitle.jsx";
 import TextField from "@/components/TextField/TextField";
 import EstimateButton from "@/components/EstimateButton/EstimateButton.jsx";
 import styles from "@/components/PageLayout/PageLayout.module.css";
+import InputField from "@/components/InputField/InputField.jsx";
+import { useState } from 'react';
 
 const PageLayout = () => {
+
+    const [testValue, setTestValue] = useState("Test Value");
+
     return(
     <>
         <div className={styles.component}>
@@ -40,8 +45,17 @@ const PageLayout = () => {
                     title={"Vehicle characteristics"}
                 />
                 <TextField
-                    text={"Enter vechicle parameters in fields below"}
+                    text={"Enter vechicle parameters in fields below."}
                 />
+
+
+            
+                <InputField
+                    variable={testValue}
+                    setVariable={setTestValue}
+                    labelText={"TEST INPUT"}
+                />
+
                 <ParagraphTitle
                     title={"Ready to get your estimate?"}
                 />

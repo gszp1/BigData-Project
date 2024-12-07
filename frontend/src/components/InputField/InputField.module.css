@@ -1,0 +1,33 @@
+.input_component {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 128px);
+    height: 64px;
+    margin-top: 20px;
+    margin-left: 128px;
+}
+
+.input_field {
+    width: 356px;
+    height: 27px;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding-left: 5px;
+}
+
+.input_field:focus {
+    outline: none;
+    border-color: orange;
+}
+
+.input_label {
+    width: 356px;
+    height: 32px;
+    margin-bottom: 5px;
+    font-family: "Anton", cursive;
+    font-style: normal;
+    font-size: 1.25rem;
+    font-weight: 100;
+}
+
