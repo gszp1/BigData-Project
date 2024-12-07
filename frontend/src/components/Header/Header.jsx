@@ -4,13 +4,9 @@ import styles from '/src/components/Header/Header.module.css'
 const Header = ({ text }) => {
     return (
         <>  
-            <div className={styles.component}>
-                <br/>
-                <h1 className={styles.header}>
-                    {text}      
-                </h1>
-                <br/>
-            </div>
+            <h1 className={styles.component}>
+                {text}      
+            </h1>
         </>
     )
 };
