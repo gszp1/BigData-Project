@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "org"
-version = "0.0.1-SNAPSHOT"
+version = "1.0.0"
 
 java {
     toolchain {
@@ -36,4 +36,10 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.named<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
+    archiveBaseName.set("middleware")
+    archiveVersion.set("1.0.0")
+    mainClass.set("org.middleware.MiddlewareApplication")
 }
