@@ -37,6 +37,12 @@ const PageLayout = () => {
                     text={"Receive an instant, detailed report with the estimated price range, helping you make informed decisions."}
                 />
                 <ParagraphTitle
+                    title={"Vehicle characteristics"}
+                />
+                <TextField
+                    text={"Enter vechicle parameters in fields below"}
+                />
+                <ParagraphTitle
                     title={"Ready to get your estimate?"}
                 />
                 <TextField
