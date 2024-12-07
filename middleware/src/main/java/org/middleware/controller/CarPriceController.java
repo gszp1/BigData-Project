@@ -19,7 +19,7 @@ public class CarPriceController {
         this.carPriceService = carPriceService;
     }
 
-    @GetMapping("")
+    @PostMapping("")
     public ResponseEntity<PriceResponseDto> getCarPrice(@RequestBody PriceRequestDto request) {
         return ResponseEntity.ok(
                 new PriceResponseDto(carPriceService.getCarPrice(request).get())
