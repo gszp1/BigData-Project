@@ -1,13 +1,16 @@
 import '@/assets/styles.css'
 import PageLayout from '@/components/PageLayout/PageLayout.jsx'
+import { ServerProvider } from '@/ServerContext.jsx'
 
 function App() {
 
   return (
     <>
-      <PageLayout/>
+      <ServerProvider>
+        <PageLayout/>
+      </ServerProvider>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
