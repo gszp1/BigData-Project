@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import styles from "/src/components/TextField/TextField.module.css"
+import styles from "/frontend/src/components/TextField/TextField.module.css"
 
 const TextField = ({text}) => {
     return (

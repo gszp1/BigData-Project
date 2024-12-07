@@ -16,6 +16,6 @@ export default defineConfig({
         '@': resolve(__dirname, 'frontend')
       }
     },
-    base: '/BigData-Project/',
+    base: '/frontend/',
   } 
 )

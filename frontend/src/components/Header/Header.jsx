@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import styles from '/src/components/Header/Header.module.css'
+import styles from '/frontend/src/components/Header/Header.module.css'
 
 const Header = ({ text, subText}) => {
     return (
