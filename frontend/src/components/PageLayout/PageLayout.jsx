@@ -13,7 +13,6 @@ const PageLayout = () => {
                 />
                 <TextField
                     text={"Place holder"}
-                
                 />
             </div>
         </div>

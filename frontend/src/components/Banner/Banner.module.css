@@ -1,6 +1,7 @@
 .banner {
     width: 964px;
     height: 256px;
+    margin-bottom: 40px;
 
     display: flex;
     flex-direction: row;
