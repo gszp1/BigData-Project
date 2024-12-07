@@ -1,7 +1,14 @@
-.component {
-
-}
-
 .text {
-    
+    width: calc(100% - 50px);
+    margin-left: 50px;
+
+    font-family: "Open Sans", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    font-size: 1.15rem;
+
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }

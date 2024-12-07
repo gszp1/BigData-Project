@@ -4,11 +4,9 @@ import styles from "/src/components/TextField/TextField.module.css"
 const TextField = ({text}) => {
     return (
         <>
-            <div className={styles.component}>
-                <p className={styles.text}>
-                    {text}
-                </p>
-            </div>
+            <p className={styles.text}>
+                {text}
+            </p>
         </>
     )
 };
