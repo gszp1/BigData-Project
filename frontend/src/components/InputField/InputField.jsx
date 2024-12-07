@@ -24,7 +24,7 @@ const InputField = ({variable, setVariable, labelText}) => {
 };
 
 InputField.propTypes = {
-    variable: PropTypes.string.isRequired,
+    variable: PropTypes.array.isRequired,
     setVariable: PropTypes.func.isRequired,
     labelText: PropTypes.string.isRequired
 }

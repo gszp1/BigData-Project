@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styles from '@/components/EstimateButton/EstimateButton.module.css'
 
-const EstimateButton = ({carData, setCarData}) => {
+const EstimateButton = ({carData}) => {
     
     const sendData = () => {
     } 
@@ -19,7 +19,6 @@ const EstimateButton = ({carData, setCarData}) => {
 
 EstimateButton.propTypes = {
     carData: PropTypes.array.isRequired,
-    setCarData: PropTypes.func.isRequired
 }
 
 

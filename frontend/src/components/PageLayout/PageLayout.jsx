@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 const PageLayout = () => {
 
-    const [testValue, setTestValue] = useState("Test Value");
+    const [carParameters, setCarParameters] = useState("Test Value");
 
     return(
     <>
@@ -51,9 +51,9 @@ const PageLayout = () => {
 
             
                 <InputField
-                    variable={testValue}
-                    setVariable={setTestValue}
-                    labelText={"TEST INPUT"}
+                    variable={carParameters}
+                    setVariable={setCarParameters}
+                    labelText={"Car Parameters"}
                 />
 
                 <ParagraphTitle
@@ -62,7 +62,9 @@ const PageLayout = () => {
                 <TextField
                     text={"If you entered all important data, click button below to get estimated price of your vehicle."}
                 />
-                <EstimateButton/>
+                <EstimateButton
+                    carData={carParameters}
+                />
             </div>
         </div>
     </>
