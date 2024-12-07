@@ -22,5 +22,5 @@ export default defineConfig({
       external: []
     }
   },
-  base: '/frontend/'
+  base: '/BigData-Project/'
 });
