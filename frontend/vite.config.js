@@ -6,16 +6,21 @@ import react from '@vitejs/plugin-react'
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-
-// https://vite.dev/config/
 export default defineConfig({
-    server: {port: 9091},
-    plugins: [react()],
-    resolve: {
-      alias: {
-        '@': resolve(__dirname, 'frontend')
-      }
+  server: { port: 9091 },
+  plugins: [react()],
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src')
     },
-    base: '/frontend/',
-  } 
-)
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
+  },
+  build: {
+    outDir: resolve(__dirname, 'dist'),
+    rollupOptions: {
+      input: resolve(__dirname, 'src/main.jsx'),
+      external: []
+    }
+  },
+  base: '/frontend/'
+});

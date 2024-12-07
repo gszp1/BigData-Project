@@ -1,8 +1,8 @@
-import Banner from "/frontend/src/components/Banner/Banner.jsx";
-import ParagraphTitle from "/frontend/src/components/ParagraphTitle/ParagraphTitle.jsx";
-import TextField from "/frontend/src/components/TextField/TextField";
-import EstimateButton from "/frontend/src/components/EstimateButton/EstimateButton.jsx";
-import styles from "/frontend/src/components/PageLayout/PageLayout.module.css";
+import Banner from "@/components/Banner/Banner.jsx";
+import ParagraphTitle from "@/components/ParagraphTitle/ParagraphTitle.jsx";
+import TextField from "@/components/TextField/TextField";
+import EstimateButton from "@/components/EstimateButton/EstimateButton.jsx";
+import styles from "@/components/PageLayout/PageLayout.module.css";
 
 const PageLayout = () => {
     return(

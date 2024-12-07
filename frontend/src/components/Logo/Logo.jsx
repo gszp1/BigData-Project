@@ -1,4 +1,4 @@
-import styles from '/frontend/src/components/Logo/Logo.module.css' 
+import styles from '@/components/Logo/Logo.module.css' 
 
 const Logo = () => {
     return (

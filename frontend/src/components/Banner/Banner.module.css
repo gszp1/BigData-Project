@@ -1,8 +1,9 @@
 .banner {
-    width: 964px;
+    width: 944px;
     height: 256px;
     margin-bottom: 40px;
-
+    margin-top: 20px;
+    margin-left: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;

@@ -1,8 +1,8 @@
 
 import PropTypes from 'prop-types';
-import Logo from '/frontend/src/components/Logo/Logo.jsx';
-import Header from '/frontend/src/components/Header/Header.jsx';
-import styles from '/frontend/src/components/Banner/Banner.module.css'
+import Logo from '@/components/Logo/Logo.jsx';
+import Header from '@/components/Header/Header.jsx';
+import styles from '@/components/Banner/Banner.module.css'
 
 const Banner = ({ bannerText, subText }) => {
     return (

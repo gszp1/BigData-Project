@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styles from '/frontend/src/components/ParagraphTitle/ParagraphTitle.module.css'
+import styles from '@/components/ParagraphTitle/ParagraphTitle.module.css'
 
 const ParagraphTitle = ({title}) => {
     return (

@@ -1,4 +1,4 @@
-import styles from '/frontend/src/components/EstimateButton/EstimateButton.module.css'
+import styles from '@/components/EstimateButton/EstimateButton.module.css'
 
 const EstimateButton = () => {
     return (
