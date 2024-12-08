@@ -8,7 +8,11 @@ import { useState } from 'react';
 import PriceWindow from "../PriceWindow/PriceWindow";
 
 const PageLayout = () => {
-    const [carParameters, setCarParameters] = useState("Test Value");
+    const [carParameters, setCarParameters] = useState({
+        brand: "Opel",
+        mileage: 2137,
+        year: 2000
+    });
     const [carPrice, setCarPrice] = useState(2137);
     const [showPrice, setShowPrice] = useState(true);
 
@@ -54,7 +58,20 @@ const PageLayout = () => {
                 <InputField
                     variable={carParameters}
                     setVariable={setCarParameters}
-                    labelText={"Car Parameters"}
+                    labelText={"Brand"}
+                    propertyName={"brand"}
+                />
+                <InputField
+                    variable={carParameters}
+                    setVariable={setCarParameters}
+                    labelText={"Mileage (km)"}
+                    propertyName={"mileage"}
+                />
+                <InputField
+                    variable={carParameters}
+                    setVariable={setCarParameters}
+                    labelText={"Production Year"}
+                    propertyName={"year"}
                 />
 
 

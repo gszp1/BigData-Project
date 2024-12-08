@@ -1,11 +1,14 @@
 import PropTypes from "prop-types";
 import styles from '@/components/InputField/InputField.module.css'
 
-const InputField = ({variable, setVariable, labelText}) => {
+const InputField = ({variable, setVariable, labelText, propertyName}) => {
     
     const handleChange = (e) => {
-        setVariable(e.target.value)
-    }
+        setVariable({
+            ...variable,
+            [propertyName]: e.target.value
+        });
+    };
     
     return (
         <>
@@ -15,7 +18,7 @@ const InputField = ({variable, setVariable, labelText}) => {
                 </label>
                 <input
                     className={styles.input_field}
-                    value={variable}
+                    value={variable[[propertyName]]}
                     onChange={handleChange}
                 />
             </div>
@@ -26,7 +29,8 @@ const InputField = ({variable, setVariable, labelText}) => {
 InputField.propTypes = {
     variable: PropTypes.array.isRequired,
     setVariable: PropTypes.func.isRequired,
-    labelText: PropTypes.string.isRequired
+    labelText: PropTypes.string.isRequired,
+    propertyName: PropTypes.string.isRequired
 }
 
 export default InputField;
