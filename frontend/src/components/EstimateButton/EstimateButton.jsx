@@ -1,14 +1,7 @@
 import PropTypes from 'prop-types';
 import styles from '@/components/EstimateButton/EstimateButton.module.css'
-import {useServerInfo} from '@/ServerContext.jsx';
-import axios from 'axios';
 
-const EstimateButton = ({carData}) => {
-    const {serverInfo, setServerInfo} = useServerInfo();
-
-    const sendData = async () => {
-    
-    } 
+const EstimateButton = ({sendData}) => {
     
     return (
         <>
@@ -25,7 +18,7 @@ const EstimateButton = ({carData}) => {
 };
 
 EstimateButton.propTypes = {
-    carData: PropTypes.array.isRequired,
+    sendData: PropTypes.func.isRequired,
 }
 
 

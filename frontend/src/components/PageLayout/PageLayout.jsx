@@ -6,8 +6,11 @@ import styles from "@/components/PageLayout/PageLayout.module.css";
 import InputField from "@/components/InputField/InputField.jsx";
 import { useState } from 'react';
 import PriceWindow from "../PriceWindow/PriceWindow";
+import {useServerInfo} from '@/ServerContext.jsx';
+import axios from 'axios';
 
 const PageLayout = () => {
+    const {serverInfo} = useServerInfo();
     const [carParameters, setCarParameters] = useState({
         brand: "Opel",
         mileage: 2137,
@@ -15,6 +18,28 @@ const PageLayout = () => {
     });
     const [carPrice, setCarPrice] = useState(2137);
     const [showPrice, setShowPrice] = useState(false);
+
+    const sendData = async () => {
+        // let data = {...carParameters};
+        let data = {temp: "Placeholder"};
+        const ip = serverInfo.ip;
+        const port = serverInfo.port;
+        const address = `http://${ip}:${port}/api/car-price`;
+        try {
+            const response =  await axios.post(
+                address,
+                data,
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+            );
+            console.log(response.data)
+        } catch (error) {
+            console.error('Error sending data:', error.message);
+        }
+    }
 
     return(
     <>
@@ -82,7 +107,7 @@ const PageLayout = () => {
                     text={"If you entered all important data, click button below to get estimated price of your vehicle."}
                 />
                 <EstimateButton
-                    carData={carParameters}
+                    sendData={sendData}
                 />
                 { showPrice && (
                     <PriceWindow
