@@ -12,11 +12,20 @@ import axios from 'axios';
 const PageLayout = () => {
     const {serverInfo} = useServerInfo();
     const [carParameters, setCarParameters] = useState({
-        brand: "Opel",
-        mileage: 2137,
-        year: 2000
+        brand: "",
+        model: "",
+        modelYear: "",
+        milage: "",
+        fuelType: "",
+        engine: "",
+        transmission: "",
+        extCol: "",
+        intCol: "",
+        accident: "",
+        cleanTitle: ""
     });
-    const [carPrice, setCarPrice] = useState(2137);
+
+    const [carPrice, setCarPrice] = useState(0);
     const [showPrice, setShowPrice] = useState(false);
 
     const sendData = async () => {
@@ -35,7 +44,9 @@ const PageLayout = () => {
                     }
                 }
             );
-            console.log(response.data)
+            console.log(response.data);
+            setCarPrice(response.data.price);
+            setShowPrice(true);
         } catch (error) {
             console.error('Error sending data:', error.message);
         }
@@ -89,14 +100,62 @@ const PageLayout = () => {
                 <InputField
                     variable={carParameters}
                     setVariable={setCarParameters}
-                    labelText={"Mileage (km)"}
-                    propertyName={"mileage"}
+                    labelText={"Model"}
+                    propertyName={"model"}
                 />
                 <InputField
                     variable={carParameters}
                     setVariable={setCarParameters}
                     labelText={"Production Year"}
-                    propertyName={"year"}
+                    propertyName={"modelYear"}
+                />
+                <InputField
+                    variable={carParameters}
+                    setVariable={setCarParameters}
+                    labelText={"Milage (miles)"}
+                    propertyName={"milage"}
+                />
+                <InputField
+                    variable={carParameters}
+                    setVariable={setCarParameters}
+                    labelText={"Fuel Type"}
+                    propertyName={"fuelType"}
+                />
+                <InputField
+                    variable={carParameters}
+                    setVariable={setCarParameters}
+                    labelText={"Engine Type"}
+                    propertyName={"engine"}
+                />
+                <InputField
+                    variable={carParameters}
+                    setVariable={setCarParameters}
+                    labelText={"Transmission"}
+                    propertyName={"transmission"}
+                />
+                <InputField
+                    variable={carParameters}
+                    setVariable={setCarParameters}
+                    labelText={"Exterior Color"}
+                    propertyName={"extCol"}
+                />
+                <InputField
+                    variable={carParameters}
+                    setVariable={setCarParameters}
+                    labelText={"Interior Color"}
+                    propertyName={"intCol"}
+                />
+                <InputField
+                    variable={carParameters}
+                    setVariable={setCarParameters}
+                    labelText={"Accident History"}
+                    propertyName={"accident"}
+                />
+                <InputField
+                    variable={carParameters}
+                    setVariable={setCarParameters}
+                    labelText={"Clean Title"}
+                    propertyName={"cleanTitle"}
                 />
 
 
