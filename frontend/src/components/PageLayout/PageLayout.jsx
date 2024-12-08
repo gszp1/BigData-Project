@@ -10,6 +10,7 @@ import PriceWindow from "../PriceWindow/PriceWindow";
 const PageLayout = () => {
     const [carParameters, setCarParameters] = useState("Test Value");
     const [carPrice, setCarPrice] = useState(2137);
+    const [showPrice, setShowPrice] = useState(false);
 
     return(
     <>
@@ -50,12 +51,12 @@ const PageLayout = () => {
                 />
 
 
-            
                 <InputField
                     variable={carParameters}
                     setVariable={setCarParameters}
                     labelText={"Car Parameters"}
                 />
+
 
                 <ParagraphTitle
                     title={"Ready to get your estimate?"}
@@ -66,10 +67,12 @@ const PageLayout = () => {
                 <EstimateButton
                     carData={carParameters}
                 />
-                <PriceWindow
-                    price={carPrice}
-                    currencySign={"$"}
-                />
+                { showPrice && (
+                    <PriceWindow
+                        price={carPrice}
+                        currencySign={"$"}
+                    />
+                )}
             </div>
         </div>
     </>
