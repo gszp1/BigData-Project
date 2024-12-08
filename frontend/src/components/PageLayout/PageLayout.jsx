@@ -10,7 +10,7 @@ import PriceWindow from "../PriceWindow/PriceWindow";
 const PageLayout = () => {
     const [carParameters, setCarParameters] = useState("Test Value");
     const [carPrice, setCarPrice] = useState(2137);
-    const [showPrice, setShowPrice] = useState(false);
+    const [showPrice, setShowPrice] = useState(true);
 
     return(
     <>
@@ -71,6 +71,7 @@ const PageLayout = () => {
                     <PriceWindow
                         price={carPrice}
                         currencySign={"$"}
+                        setShowWindow={setShowPrice}
                     />
                 )}
             </div>
