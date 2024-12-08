@@ -1,11 +1,17 @@
 import PropTypes from 'prop-types';
 import styles from '@/components/PriceWindow/PriceWindow.module.css'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 const PriceWindow = ({ price }) => {
     return (
     <>
         <div className={styles.background}>
             <div className={styles.window}>
+                <div className={styles.button_container}>
+                    <button className={styles.exit_button}>
+                        <FontAwesomeIcon icon={faXmark} />
+                    </button>
+                </div>
                 <p className={styles.window_text}>
                     Estimated price of your car:
                 </p>
