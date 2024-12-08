@@ -56,9 +56,6 @@ const PageLayout = () => {
                     setVariable={setCarParameters}
                     labelText={"Car Parameters"}
                 />
-                <PriceWindow
-                    price={carPrice}
-                />
 
                 <ParagraphTitle
                     title={"Ready to get your estimate?"}
@@ -68,6 +65,10 @@ const PageLayout = () => {
                 />
                 <EstimateButton
                     carData={carParameters}
+                />
+                <PriceWindow
+                    price={carPrice}
+                    currencySign={"$"}
                 />
             </div>
         </div>

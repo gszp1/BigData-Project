@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import styles from '@/components/PriceWindow/PriceWindow.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-const PriceWindow = ({ price }) => {
+const PriceWindow = ({ price, currencySign }) => {
     return (
     <>
         <div className={styles.background}>
@@ -13,11 +13,11 @@ const PriceWindow = ({ price }) => {
                     </button>
                 </div>
                 <p className={styles.window_text}>
-                    Estimated price of your car:
+                    Estimated price of your car
                 </p>
                 <br/>
                 <p className={styles.price_field}>
-                    {price}
+                    {`${price}  ${currencySign}`}
                 </p>
             </div>
         </div>
@@ -26,7 +26,8 @@ const PriceWindow = ({ price }) => {
 };
 
 PriceWindow.propTypes = {
-    price: PropTypes.number.isRequired
+    price: PropTypes.number.isRequired,
+    currencySign: PropTypes.string.isRequired
 }
 
 export default PriceWindow;
