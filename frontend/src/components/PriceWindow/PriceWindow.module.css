@@ -1,9 +1,38 @@
 .window {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    top: calc(50% - 200px);
+    left: calc(50% - 360px);
+    z-index: 1000;
+
+    width: 720px;
+    height: 400px;
+    border: 1px solid black;
+    border-radius: 30px;
+
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.background {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.10);
     
+    position: fixed;
+    z-index: 900;
+    top: 0;
+    left: 0;
+
+    backdrop-filter: blur(10px);
 }
 
 .price_field {
-
+    
 }
 
 .window_text {

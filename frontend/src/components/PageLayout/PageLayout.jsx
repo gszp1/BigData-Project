@@ -5,10 +5,11 @@ import EstimateButton from "@/components/EstimateButton/EstimateButton.jsx";
 import styles from "@/components/PageLayout/PageLayout.module.css";
 import InputField from "@/components/InputField/InputField.jsx";
 import { useState } from 'react';
+import PriceWindow from "../PriceWindow/PriceWindow";
 
 const PageLayout = () => {
-
     const [carParameters, setCarParameters] = useState("Test Value");
+    const [carPrice, setCarPrice] = useState(2137);
 
     return(
     <>
@@ -54,6 +55,9 @@ const PageLayout = () => {
                     variable={carParameters}
                     setVariable={setCarParameters}
                     labelText={"Car Parameters"}
+                />
+                <PriceWindow
+                    price={carPrice}
                 />
 
                 <ParagraphTitle
