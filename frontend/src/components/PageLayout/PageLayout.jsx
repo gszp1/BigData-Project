@@ -14,7 +14,7 @@ const PageLayout = () => {
         year: 2000
     });
     const [carPrice, setCarPrice] = useState(2137);
-    const [showPrice, setShowPrice] = useState(true);
+    const [showPrice, setShowPrice] = useState(false);
 
     return(
     <>
