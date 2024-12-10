@@ -1,4 +1,18 @@
 package org.middleware.dto;
 
-public record PriceRequestDto(String temp) {
+import java.math.BigDecimal;
+
+public record PriceRequestDto(
+        String brand,
+        String model,
+        Integer modelYear,
+        BigDecimal milage,
+        String fuelType,
+        String engine,
+        String transmission,
+        String extCol,
+        String intCol,
+        String accident,
+        String cleanTitle
+) {
 }
