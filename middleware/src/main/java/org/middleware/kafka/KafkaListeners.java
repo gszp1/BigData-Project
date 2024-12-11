@@ -31,5 +31,13 @@ public class KafkaListeners {
     @KafkaListener(topics = "output", groupId = "output-consumers")
     void listener(KafkaOutputMessage message) {
         log.info("LISTENER: Received kafka message with data {} from topic {}", producerTopic, message);
+        CompletableFuture<BigDecimal> future = carPriceHashMap.get(message.getTag());
+        if (future != null) {
+            future.complete(message.getPrice());
+            carPriceHashMap.remove(message.getTag());
+            log.info("LISTENER: Completed future for tag {} with price {}", message.getTag(), message.getPrice());
+        } else {
+            log.warn("LISTENER: No future for tag {}", message.getTag());
+        }
     }
 }

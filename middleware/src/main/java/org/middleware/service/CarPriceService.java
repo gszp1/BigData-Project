@@ -25,6 +25,10 @@ public class CarPriceService {
     public Optional<BigDecimal> getCarPrice(PriceRequest request) {
         var tag = UUID.randomUUID().toString();
         var kafkaMessage = KafkaInputMessage.fromPriceRequest(request, tag);
+        CompletableFuture<BigDecimal> future = new CompletableFuture<>();
+        carPriceHashMap.put(tag, future);
+
+
         return Optional.of(new BigDecimal("2137"));
     }
 }
