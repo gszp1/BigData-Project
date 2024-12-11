@@ -10,12 +10,14 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class KafkaOutputMessage {
+    private String tag;
     private BigDecimal price;
 
     @Override
     public String toString() {
         return "{" +
-                "price=" + price +
+                "tag='" + tag + '\'' +
+                ", price=" + price +
                 '}';
     }
 }

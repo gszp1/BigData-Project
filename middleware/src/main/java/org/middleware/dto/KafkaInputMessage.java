@@ -5,11 +5,13 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class KafkaInputMessage {
+    private String tag;
     private String brand;
     private String model;
     private Integer modelYear;
@@ -23,25 +25,28 @@ public class KafkaInputMessage {
     private String cleanTitle;
 
     public static KafkaInputMessage fromPriceRequest(PriceRequest priceRequest) {
-        return KafkaInputMessage.builder()
-                .brand(priceRequest.brand())
-                .model(priceRequest.model())
-                .modelYear(priceRequest.modelYear())
-                .milage(priceRequest.milage())
-                .fuelType(priceRequest.fuelType())
-                .engine(priceRequest.engine())
-                .transmission(priceRequest.transmission())
-                .extCol(priceRequest.extCol())
-                .intCol(priceRequest.intCol())
-                .accident(priceRequest.accident())
-                .cleanTitle(priceRequest.cleanTitle())
-                .build();
+        var inputMessage =  KafkaInputMessage.builder()
+                                .brand(priceRequest.brand())
+                                .model(priceRequest.model())
+                                .modelYear(priceRequest.modelYear())
+                                .milage(priceRequest.milage())
+                                .fuelType(priceRequest.fuelType())
+                                .engine(priceRequest.engine())
+                                .transmission(priceRequest.transmission())
+                                .extCol(priceRequest.extCol())
+                                .intCol(priceRequest.intCol())
+                                .accident(priceRequest.accident())
+                                .cleanTitle(priceRequest.cleanTitle())
+                                .build();
+        inputMessage.tag = UUID.randomUUID().toString();
+        return inputMessage;
     }
 
     @Override
     public String toString() {
         return "{" +
-                "brand='" + brand + '\'' +
+                "tag='" + tag + '\'' +
+                ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", modelYear=" + modelYear +
                 ", milage=" + milage +
