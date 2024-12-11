@@ -36,6 +36,7 @@ dependencies {
 
     /* SLF4j and Logback*/
     implementation("org.slf4j:slf4j-api:2.0.15")
+    implementation("ch.qos.logback:logback-core:1.5.12")
     implementation("ch.qos.logback:logback-classic:1.5.12")
 }
 
