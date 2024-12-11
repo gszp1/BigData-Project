@@ -18,6 +18,6 @@ public class KafkaListeners {
 
     @KafkaListener(topics = "output", groupId = "output-consumers")
     void listener(KafkaOutputMessage message) {
-        log.info("Received kafka message with data {} from topic {}", producerTopic, message);
+        log.info("LISTENER: Received kafka message with data {} from topic {}", producerTopic, message);
     }
 }

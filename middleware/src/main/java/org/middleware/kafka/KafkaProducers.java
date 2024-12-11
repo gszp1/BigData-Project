@@ -20,7 +20,7 @@ public class KafkaProducers {
     }
 
     public void sendMessage(KafkaInputMessage message) {
-        log.info("Sending Kafka message with data {} to topic {}", message, producerTopic);
+        log.info("PRODUCER: Sending Kafka message with data {} to topic {}", message, producerTopic);
         kafkaTemplate.send(producerTopic, message);
     }
 }
