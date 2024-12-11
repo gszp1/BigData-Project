@@ -1,13 +1,9 @@
 package org.middleware.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
 public class KafkaInputMessage {
 
