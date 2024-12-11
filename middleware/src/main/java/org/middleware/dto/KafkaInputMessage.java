@@ -24,7 +24,7 @@ public class KafkaInputMessage {
     private String accident;
     private String cleanTitle;
 
-    public static KafkaInputMessage fromPriceRequest(PriceRequest priceRequest) {
+    public static KafkaInputMessage fromPriceRequest(PriceRequest priceRequest, String tag) {
         var inputMessage =  KafkaInputMessage.builder()
                                 .brand(priceRequest.brand())
                                 .model(priceRequest.model())
@@ -38,7 +38,11 @@ public class KafkaInputMessage {
                                 .accident(priceRequest.accident())
                                 .cleanTitle(priceRequest.cleanTitle())
                                 .build();
-        inputMessage.tag = UUID.randomUUID().toString();
+        if (tag == null) {
+            inputMessage.tag = UUID.randomUUID().toString();
+        } else {
+            inputMessage.tag = tag;
+        }
         return inputMessage;
     }
 

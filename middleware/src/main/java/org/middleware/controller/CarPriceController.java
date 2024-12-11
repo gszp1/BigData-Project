@@ -2,11 +2,14 @@ package org.middleware.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.middleware.dto.KafkaInputMessage;
 import org.middleware.dto.PriceRequest;
 import org.middleware.dto.PriceResponse;
 import org.middleware.service.CarPriceService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @Slf4j
 @RestController
@@ -25,6 +28,9 @@ public class CarPriceController {
             HttpServletRequest servletRequest
     ) {
         log.info("Request for car price from {} with data: {}", extractClientIP(servletRequest), request);
+        var tag = UUID.randomUUID().toString();
+        var kafkaMessage = KafkaInputMessage.fromPriceRequest(request, tag);
+
         return ResponseEntity.ok(
                 new PriceResponse(carPriceService.getCarPrice(request).get())
         );

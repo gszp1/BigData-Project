@@ -1,10 +1,12 @@
 package org.middleware.kafka;
 
+import lombok.extern.slf4j.Slf4j;
 import org.middleware.dto.KafkaInputMessage;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public class KafkaProducers {
 
@@ -18,6 +20,7 @@ public class KafkaProducers {
     }
 
     public void sendMessage(KafkaInputMessage message) {
+        log.info("Sending Kafka message with data {} to topic {}", message, producerTopic);
         kafkaTemplate.send(producerTopic, message);
     }
 }
