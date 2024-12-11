@@ -1,6 +1,6 @@
 <configuration>
 
-    <variable name="LOG_DIR" value="/app-logs/middleware/logs" />
+    <variable name="LOG_DIR" value="/var/logs/CarWorthy-middleware" />
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -10,12 +10,9 @@
         </encoder>
     </appender>
 
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>${LOG_DIR}/runningAppLogs.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_DIR}/runningAppLogs-%d{HH:mm:ss}-%i.log</fileNamePattern>
-            <maxHistory>10</maxHistory>
-        </rollingPolicy>
+        <append>false</append>
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} -%kvp- %msg%n</pattern>
         </encoder>

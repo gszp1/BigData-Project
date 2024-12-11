@@ -1,5 +1,7 @@
 package org.middleware.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.middleware.dto.PriceRequestDto;
 import org.middleware.dto.PriceResponseDto;
 import org.middleware.service.CarPriceService;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/car-price")
 public class CarPriceController {
@@ -20,9 +23,23 @@ public class CarPriceController {
     }
 
     @PostMapping("")
-    public ResponseEntity<PriceResponseDto> getCarPrice(@RequestBody PriceRequestDto request) {
+    public ResponseEntity<PriceResponseDto> getCarPrice(
+            @RequestBody PriceRequestDto request,
+            HttpServletRequest servletRequest
+    ) {
+        log.info("Request for car price from {} with data: {}", extractClientIP(servletRequest), request);
         return ResponseEntity.ok(
                 new PriceResponseDto(carPriceService.getCarPrice(request).get())
         );
+    }
+
+    private String extractClientIP(HttpServletRequest request) {
+        String ip = request.getHeader("X-Forwarded-For");
+        if (ip == null || ip.isEmpty() || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getRemoteAddr();
+        } else if (ip.contains(",")) {
+            ip = ip.split(",")[0].trim();
+        }
+        return ip;
     }
 }
