@@ -25,19 +25,19 @@ public class KafkaInputMessage {
     private String cleanTitle;
 
     public static KafkaInputMessage fromPriceRequest(PriceRequest priceRequest, String tag) {
-        var inputMessage =  KafkaInputMessage.builder()
-                                .brand(priceRequest.brand())
-                                .model(priceRequest.model())
-                                .modelYear(priceRequest.modelYear())
-                                .milage(priceRequest.milage())
-                                .fuelType(priceRequest.fuelType())
-                                .engine(priceRequest.engine())
-                                .transmission(priceRequest.transmission())
-                                .extCol(priceRequest.extCol())
-                                .intCol(priceRequest.intCol())
-                                .accident(priceRequest.accident())
-                                .cleanTitle(priceRequest.cleanTitle())
-                                .build();
+        var inputMessage = KafkaInputMessage.builder()
+                .brand(priceRequest.brand())
+                .model(priceRequest.model())
+                .modelYear(priceRequest.modelYear())
+                .milage(priceRequest.milage())
+                .fuelType(priceRequest.fuelType())
+                .engine(priceRequest.engine())
+                .transmission(priceRequest.transmission())
+                .extCol(priceRequest.extCol())
+                .intCol(priceRequest.intCol())
+                .accident(priceRequest.accident())
+                .cleanTitle(priceRequest.cleanTitle())
+                .build();
         if (tag == null) {
             inputMessage.tag = UUID.randomUUID().toString();
         } else {
