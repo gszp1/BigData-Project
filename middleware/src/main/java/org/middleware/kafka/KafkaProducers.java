@@ -1,20 +1,19 @@
-package org.middleware.service;
+package org.middleware.kafka;
 
-import org.apache.kafka.clients.producer.KafkaProducer;
 import org.middleware.dto.KafkaInputMessage;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
-public class KafkaService {
+@Component
+public class KafkaProducers {
 
     @Value("${spring.kafka.producer.topic}")
     private String producerTopic;
 
     private final KafkaTemplate<String, KafkaInputMessage> kafkaTemplate;
 
-    public KafkaService(KafkaTemplate<String, KafkaInputMessage> kafkaTemplate) {
+    public KafkaProducers(KafkaTemplate<String, KafkaInputMessage> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
