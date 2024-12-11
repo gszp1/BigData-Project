@@ -44,6 +44,17 @@ services:
       - backend_network
     ports:
       - "9090:9090"
+    environment:
+      - SPRING_PROFILES_ACTIVE=container
+      - APPLICATION_PORT=9090
+      - PRODUCER_TOPIC_NAME=input
+      - PRODUCER_BOOTSTRAP_SERVER=kafka:9092
+      - PRODUCER_RETRIES=3
+      - PRODUCER_ACKS=all
+      - CONSUMER_TOPIC_NAME=output
+      - CONSUMER_BOOTSTRAP_SERVER=kafka:9092
+      - CONSUMER_GROUP_ID=output-consumers
+      - CONSUMER_AUTO_OFFSET_RESET=latest
     depends_on:
       kafka:
         condition: service_started

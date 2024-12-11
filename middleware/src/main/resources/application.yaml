@@ -1,3 +1,4 @@
+# Local config - used when application is being run locally on machine (set by default)
 spring:
   application:
     name: "middleware"
@@ -22,6 +23,36 @@ spring:
           json:
             trusted:
               packages: "*"
-
 server:
   port: 9090
+# Container config - used when application is being run in container runtime
+---
+spring:
+  config:
+    activate:
+      on-profile: container
+  application:
+    name: "middleware"
+  kafka:
+    producer:
+      bootstrap-servers: "${PRODUCER_BOOTSTRAP_SERVER}"
+      topic: "${PRODUCER_TOPIC_NAME}"
+      retries: "${PRODUCER_RETRIES}"
+      acks: "${PRODUCER_ACKS}"
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+    consumer:
+      bootstrap-servers: "${CONSUMER_BOOTSTRAP_SERVER}"
+      topic: "${CONSUMER_TOPIC_NAME}"
+      group-id: "${CONSUMER_GROUP_ID}"
+      auto-offset-reset: "${CONSUMER_AUTO_OFFSET_RESET}"
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
+server:
+  port: ${APPLICATION_PORT}
