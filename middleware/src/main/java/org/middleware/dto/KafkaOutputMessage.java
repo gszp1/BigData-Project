@@ -1,14 +1,14 @@
 package org.middleware.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class KafkaOutputMessage {
     private String tag;
     private BigDecimal price;
