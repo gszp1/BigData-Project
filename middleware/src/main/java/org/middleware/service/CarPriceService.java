@@ -41,7 +41,7 @@ public class CarPriceService {
 
         try {
             BigDecimal price = future.get(60, TimeUnit.SECONDS);
-            return Optional.of(new PriceResponse(price));
+            return Optional.of(new PriceResponse(price, "Operation finished successfully"));
         } catch (Exception e) {
             log.error("CarPriceService: Error occurred while waiting for car price response for tag {}", tag, e);
             return Optional.empty();

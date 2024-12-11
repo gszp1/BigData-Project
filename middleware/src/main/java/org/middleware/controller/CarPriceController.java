@@ -2,12 +2,9 @@ package org.middleware.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
-import org.middleware.beans.SharedHashMap;
-import org.middleware.dto.KafkaInputMessage;
 import org.middleware.dto.PriceRequest;
 import org.middleware.dto.PriceResponse;
 import org.middleware.service.CarPriceService;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
-import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -33,15 +28,20 @@ public class CarPriceController {
     }
 
     @PostMapping("")
-    public ResponseEntity<PriceResponse> getCarPrice(
+    public ResponseEntity<?> getCarPrice(
             @RequestBody PriceRequest request,
             HttpServletRequest servletRequest
     ) {
         log.info("Request for car price from {} with data: {}", extractClientIP(servletRequest), request);
-
-        return ResponseEntity.ok(
-                new PriceResponse(carPriceService.getCarPrice(request).get())
-        );
+        Optional<PriceResponse> priceResponseOptional = carPriceService.getCarPrice(request);
+        return priceResponseOptional
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity
+                        .status(500)
+                        .body(new PriceResponse(BigDecimal.ZERO,
+                                "Failed to receive response from internal service")
+                        )
+                );
     }
 
     private String extractClientIP(HttpServletRequest request) {
