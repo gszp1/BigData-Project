@@ -11,4 +11,11 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class KafkaOutputMessage {
     private BigDecimal price;
+
+    @Override
+    public String toString() {
+        return "{" +
+                "price=" + price +
+                '}';
+    }
 }

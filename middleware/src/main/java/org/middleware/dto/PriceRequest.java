@@ -15,4 +15,20 @@ public record PriceRequest(
         String accident,
         String cleanTitle
 ) {
+    @Override
+    public String toString() {
+        return "{" +
+                "brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", modelYear=" + modelYear +
+                ", milage=" + milage +
+                ", fuelType='" + fuelType + '\'' +
+                ", engine='" + engine + '\'' +
+                ", transmission='" + transmission + '\'' +
+                ", extCol='" + extCol + '\'' +
+                ", intCol='" + intCol + '\'' +
+                ", accident='" + accident + '\'' +
+                ", cleanTitle='" + cleanTitle + '\'' +
+                '}';
+    }
 }
