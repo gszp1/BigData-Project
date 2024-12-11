@@ -25,14 +25,20 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.kafka:spring-kafka:3.3.0")
-    implementation("com.fasterxml.jackson.core:jackson-core:2.18.1")
-    compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.springframework.kafka:spring-kafka-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    /* lombok */
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
+
+    /* Kafka */
+    implementation("org.springframework.kafka:spring-kafka:3.3.0")
+    implementation("org.apache.kafka:kafka-clients:3.9.0")
+    testImplementation("org.springframework.kafka:spring-kafka-test")
+    implementation("com.fasterxml.jackson.core:jackson-core:2.18.1")
 
     /* SLF4j and Logback*/
     implementation("org.slf4j:slf4j-api:2.0.15")
