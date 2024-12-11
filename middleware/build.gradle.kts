@@ -33,6 +33,10 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.kafka:spring-kafka-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    /* SLF4j and Logback*/
+    implementation("org.slf4j:slf4j-api:2.0.15")
+    implementation("ch.qos.logback:logback-classic:1.5.12")
 }
 
 tasks.withType<Test> {
