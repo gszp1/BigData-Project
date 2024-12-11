@@ -26,14 +26,10 @@ public class CarPriceController {
 
     private final CarPriceService carPriceService;
 
-    private final ConcurrentHashMap<String, CompletableFuture<BigDecimal>> carPriceHashMap;
 
-    public CarPriceController(
-            CarPriceService carPriceService,
-            @Qualifier("carPriceHashMap") ConcurrentHashMap<String, CompletableFuture<BigDecimal>> carPriceHashMap
+    public CarPriceController(CarPriceService carPriceService
     ) {
         this.carPriceService = carPriceService;
-        this.carPriceHashMap = carPriceHashMap;
     }
 
     @PostMapping("")
@@ -42,8 +38,6 @@ public class CarPriceController {
             HttpServletRequest servletRequest
     ) {
         log.info("Request for car price from {} with data: {}", extractClientIP(servletRequest), request);
-        var tag = UUID.randomUUID().toString();
-        var kafkaMessage = KafkaInputMessage.fromPriceRequest(request, tag);
 
         return ResponseEntity.ok(
                 new PriceResponse(carPriceService.getCarPrice(request).get())
