@@ -2,9 +2,14 @@ package org.middleware.kafka;
 
 import lombok.extern.slf4j.Slf4j;
 import org.middleware.dto.KafkaOutputMessage;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
+
+import java.math.BigDecimal;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 @Component
@@ -15,6 +20,13 @@ public class KafkaListeners {
 
     @Value("${spring.kafka.consumer.group-id}")
     private String groupId;
+
+    private final ConcurrentHashMap<String, CompletableFuture<BigDecimal>> carPriceHashMap;
+
+    public KafkaListeners(
+            @Qualifier("carPriceHashMap") ConcurrentHashMap<String, CompletableFuture<BigDecimal>> carPriceHashMap) {
+        this.carPriceHashMap = carPriceHashMap;
+    }
 
     @KafkaListener(topics = "output", groupId = "output-consumers")
     void listener(KafkaOutputMessage message) {
