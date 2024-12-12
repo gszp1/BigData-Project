@@ -18,7 +18,8 @@ public class KafkaInputMessage implements Serializable {
     private Integer modelYear;
     private BigDecimal milage;
     private String fuelType;
-    private String engine;
+    private BigDecimal engineCapacity;
+    private BigDecimal engineHorsePower;
     private String transmission;
     private String extCol;
     private String intCol;
@@ -32,7 +33,8 @@ public class KafkaInputMessage implements Serializable {
                 .modelYear(priceRequest.modelYear())
                 .milage(priceRequest.milage())
                 .fuelType(priceRequest.fuelType())
-                .engine(priceRequest.engine())
+                .engineCapacity(priceRequest.engineCapacity())
+                .engineHorsePower(priceRequest.engineHorsePower())
                 .transmission(priceRequest.transmission())
                 .extCol(priceRequest.extCol())
                 .intCol(priceRequest.intCol())
@@ -56,7 +58,8 @@ public class KafkaInputMessage implements Serializable {
                 ", modelYear=" + modelYear +
                 ", milage=" + milage +
                 ", fuelType='" + fuelType + '\'' +
-                ", engine='" + engine + '\'' +
+                ", engineCapacity=" + engineCapacity +
+                ", engineHorsePower=" + engineHorsePower +
                 ", transmission='" + transmission + '\'' +
                 ", extCol='" + extCol + '\'' +
                 ", intCol='" + intCol + '\'' +

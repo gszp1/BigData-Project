@@ -8,7 +8,8 @@ public record PriceRequest(
         Integer modelYear,
         BigDecimal milage,
         String fuelType,
-        String engine,
+        BigDecimal engineCapacity,
+        BigDecimal engineHorsePower,
         String transmission,
         String extCol,
         String intCol,
@@ -23,7 +24,8 @@ public record PriceRequest(
                 ", modelYear=" + modelYear +
                 ", milage=" + milage +
                 ", fuelType='" + fuelType + '\'' +
-                ", engine='" + engine + '\'' +
+                ", engineCapacity=" + engineCapacity +
+                ", engineHorsePower=" + engineHorsePower +
                 ", transmission='" + transmission + '\'' +
                 ", extCol='" + extCol + '\'' +
                 ", intCol='" + intCol + '\'' +
