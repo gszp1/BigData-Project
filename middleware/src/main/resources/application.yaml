@@ -21,8 +21,11 @@ spring:
       properties:
         spring:
           json:
+            value:
+              default:
+                type: org.middleware.dto.KafkaOutputMessage
             trusted:
-              packages: "*"
+              packages: org.middleware.dto
 server:
   port: 9090
 # Container config - used when application is being run in container runtime
@@ -48,11 +51,14 @@ spring:
       group-id: "${CONSUMER_GROUP_ID}"
       auto-offset-reset: "${CONSUMER_AUTO_OFFSET_RESET}"
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       properties:
         spring:
           json:
+            value:
+              default:
+                type: org.middleware.dto.KafkaOutputMessage
             trusted:
-              packages: "*"
+                packages: org.middleware.dto
 server:
   port: ${APPLICATION_PORT}

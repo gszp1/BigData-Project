@@ -40,7 +40,11 @@ public class KafkaConsumerConfig {
 
     @Bean
     public ConsumerFactory<String, KafkaOutputMessage> consumerFactory() {
-        return new DefaultKafkaConsumerFactory<>(consumerConfig());
+        return new DefaultKafkaConsumerFactory<>(
+                consumerConfig(),
+                new StringDeserializer(),
+                new CustomJsonDeserializer()
+        );
     }
 
     @Bean
