@@ -43,9 +43,6 @@ public class KafkaInputMessage implements Serializable {
 
     private String accident;
 
-    @JsonProperty("clean_title")
-    private String cleanTitle;
-
     public static KafkaInputMessage fromPriceRequest(PriceRequest priceRequest, String tag) {
         var inputMessage = KafkaInputMessage.builder()
                 .brand(priceRequest.brand())
@@ -59,7 +56,6 @@ public class KafkaInputMessage implements Serializable {
                 .extCol(priceRequest.extCol())
                 .intCol(priceRequest.intCol())
                 .accident(priceRequest.accident())
-                .cleanTitle(priceRequest.cleanTitle())
                 .build();
         if (tag == null) {
             inputMessage.tag = UUID.randomUUID().toString();
@@ -84,7 +80,6 @@ public class KafkaInputMessage implements Serializable {
                 ", extCol='" + extCol + '\'' +
                 ", intCol='" + intCol + '\'' +
                 ", accident='" + accident + '\'' +
-                ", cleanTitle='" + cleanTitle + '\'' +
                 '}';
     }
 }

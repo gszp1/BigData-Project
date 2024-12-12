@@ -13,8 +13,7 @@ public record PriceRequest(
         String transmission,
         String extCol,
         String intCol,
-        String accident,
-        String cleanTitle
+        String accident
 ) {
     @Override
     public String toString() {
@@ -30,7 +29,6 @@ public record PriceRequest(
                 ", extCol='" + extCol + '\'' +
                 ", intCol='" + intCol + '\'' +
                 ", accident='" + accident + '\'' +
-                ", cleanTitle='" + cleanTitle + '\'' +
                 '}';
     }
 }
