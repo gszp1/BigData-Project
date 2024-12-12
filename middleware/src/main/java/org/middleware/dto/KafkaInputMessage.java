@@ -1,5 +1,6 @@
 package org.middleware.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.io.Serializable;
@@ -13,17 +14,36 @@ import java.util.UUID;
 @Setter
 public class KafkaInputMessage implements Serializable {
     private String tag;
+
     private String brand;
+
     private String model;
+
+    @JsonProperty("model_year")
     private Integer modelYear;
+
     private BigDecimal milage;
+
+    @JsonProperty("fuel_type")
     private String fuelType;
+
+    @JsonProperty("engine_capacity")
     private BigDecimal engineCapacity;
+
+    @JsonProperty("engine_horsepower")
     private BigDecimal engineHorsePower;
+
     private String transmission;
+
+    @JsonProperty("ext_col")
     private String extCol;
+
+    @JsonProperty("int_col")
     private String intCol;
+
     private String accident;
+
+    @JsonProperty("clean_title")
     private String cleanTitle;
 
     public static KafkaInputMessage fromPriceRequest(PriceRequest priceRequest, String tag) {
