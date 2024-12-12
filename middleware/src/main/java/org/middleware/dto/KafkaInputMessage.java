@@ -2,6 +2,7 @@ package org.middleware.dto;
 
 import lombok.*;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -10,7 +11,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-public class KafkaInputMessage {
+public class KafkaInputMessage implements Serializable {
     private String tag;
     private String brand;
     private String model;

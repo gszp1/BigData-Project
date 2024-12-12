@@ -2,6 +2,7 @@ package org.middleware.dto;
 
 import lombok.*;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Builder
@@ -9,7 +10,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Getter
 @Setter
-public class KafkaOutputMessage {
+public class KafkaOutputMessage implements Serializable {
     private String tag;
     private BigDecimal price;
 
