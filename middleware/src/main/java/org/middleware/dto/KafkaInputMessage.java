@@ -22,7 +22,8 @@ public class KafkaInputMessage implements Serializable {
     @JsonProperty("model_year")
     private Integer modelYear;
 
-    private BigDecimal milage;
+    @JsonProperty("milage")
+    private BigDecimal mileage;
 
     @JsonProperty("fuel_type_numeric")
     private Integer fuelTypeNumeric;
@@ -49,7 +50,7 @@ public class KafkaInputMessage implements Serializable {
         var inputMessage = KafkaInputMessage.builder()
                 .brandNumeric(BrandMapper.getBrandValue(priceRequest.brand()))
                 .modelYear(priceRequest.modelYear())
-                .milage(priceRequest.milage())
+                .mileage(priceRequest.milage())
                 .fuelTypeNumeric(FuelTypeMapper.getFuelTypeValue(priceRequest.fuelType()))
                 .engineCapacity(priceRequest.engineCapacity())
                 .engineHorsePower(priceRequest.engineHorsePower())
@@ -72,7 +73,7 @@ public class KafkaInputMessage implements Serializable {
                 "tag='" + tag + '\'' +
                 ", brandNumeric=" + brandNumeric +
                 ", modelYear=" + modelYear +
-                ", milage=" + milage +
+                ", milage=" + mileage +
                 ", fuelTypeNumeric=" + fuelTypeNumeric +
                 ", engineCapacity=" + engineCapacity +
                 ", engineHorsePower=" + engineHorsePower +
