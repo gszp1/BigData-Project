@@ -21,7 +21,6 @@ const PriceWindow = ({ price, currencySign, setShowWindow }) => {
                             <p className={styles.window_text}>
                                 Estimated price of your car
                             </p>
-                            <br/>
                             <p className={styles.price_field}>
                                 {`${price}  ${currencySign}`}
                             </p>
