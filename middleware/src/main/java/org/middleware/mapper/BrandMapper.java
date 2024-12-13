@@ -15,7 +15,7 @@ public class BrandMapper {
         values.put("chevrolet", 3);
         values.put("audi", 4);
         values.put("porsche", 5);
-        values.put("land", 6); // Check if "Land" should be "Land Rover"
+        values.put("land", 6);
         values.put("toyota", 7);
         values.put("lexus", 8);
         values.put("jeep", 9);
