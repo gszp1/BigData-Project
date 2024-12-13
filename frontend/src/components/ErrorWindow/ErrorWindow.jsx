@@ -1,28 +1,33 @@
-import styles from "@/components/ErrorWindow/ErrorWindow.jsx"
+import styles from "@/components/ErrorWindow/ErrorWindow.module.css"
 import Window from "@/components/Window/Window.jsx"
-import BlurryBackground from "@/component/BlurryBackground/BlurryBackground.jsx";
+import BlurryBackground from "@/components/BlurryBackground/BlurryBackground.jsx";
 import PropTypes from "prop-types";
 
-const ErrorWindow = ({errorMessage, closeFunction}) => {
+const ErrorWindow = ({errorMessage, setShowError}) => {
+    const closeWindow = () => {
+        setShowError(false);
+    };
+
     return (
         <>
             <BlurryBackground
-                closeFunction={closeFunction}
+                closeFunction={closeWindow}
                 content={
                 <>
                     <Window
-                    closeWindow={closeFunction}
-                        content={
-                            <>
-                                <p className={styles.header}>
-                                    Something Went Wrong!
-                                </p>
-                                <p className={styles.message}>
-                                    {errorMessage}
-                                </p>
-                            </>
-                        }
+                        closeWindow={closeWindow}
+                            content={
+                                <>
+                                    <p className={styles.header}>
+                                        Something Went Wrong!
+                                    </p>
+                                    <p className={styles.message}>
+                                        {errorMessage}
+                                    </p>
+                                </>
+                            }
                     />
+                        
                 </>}
             />
         </>
@@ -31,7 +36,7 @@ const ErrorWindow = ({errorMessage, closeFunction}) => {
 
 ErrorWindow.propTypes = {
     errorMessage: PropTypes.string.isRequired,
-    closeFunction: PropTypes.func.isRequired
+    setShowError: PropTypes.func.isRequired
 }
 
 export default ErrorWindow;

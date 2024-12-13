@@ -13,7 +13,7 @@
     height: 400px;
     border: 1px solid black;
 
-    background: conic-gradient(from .5turn at 50% 110%, white, orange);
+    background: conic-gradient(from .5turn at bottom center, lightblue, white);
     box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
     transition: transform 0.5s ease-in-out;
 }

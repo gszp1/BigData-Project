@@ -4,8 +4,9 @@ import TextField from "@/components/TextField/TextField";
 import EstimateButton from "@/components/EstimateButton/EstimateButton.jsx";
 import styles from "@/components/PageLayout/PageLayout.module.css";
 import InputField from "@/components/InputField/InputField.jsx";
+import ErrorWindow from "@/components/ErrorWindow/ErrorWindow.jsx";
 import { useState } from 'react';
-import PriceWindow from "../PriceWindow/PriceWindow";
+import PriceWindow from "@/components/PriceWindow/PriceWindow.jsx";
 import {useServerInfo} from '@/ServerContext.jsx';
 import axios from 'axios';
 
@@ -26,7 +27,9 @@ const PageLayout = () => {
     });
 
     const [carPrice, setCarPrice] = useState(0);
-    const [showPrice, setShowPrice] = useState(true);
+    const [showPrice, setShowPrice] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [showError, setShowError] = useState(true);
 
     const sendData = async () => {
         // let data = {...carParameters};
@@ -175,6 +178,13 @@ const PageLayout = () => {
                         setShowWindow={setShowPrice}
                     />
                 )}
+                { showError && (
+                    <ErrorWindow
+                        message={errorMessage}
+                        setShowError={setShowError}
+                    />
+                )}
+
             </div>
         </div>
     </>
