@@ -25,7 +25,19 @@ const PageLayout = () => {
         intCol: "",
         accident: "",
     });
-
+    const [errorLabels, setErrorLabels] = useState({
+        brand: "aa",
+        modelYear: "bb",
+        milage: "cc",
+        engineCapacity: "",
+        engineHorsepower: "",
+        fuelType: "",
+        engine: "",
+        transmission: "",
+        extCol: "",
+        intCol: "",
+        accident: "",
+    });
     const [carPrice, setCarPrice] = useState(0);
     const [showPrice, setShowPrice] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
@@ -99,60 +111,70 @@ const PageLayout = () => {
                     setVariable={setCarParameters}
                     labelText={"Brand"}
                     propertyName={"brand"}
+                    errorLabel={errorLabels["brand"]}
                 />
                 <InputField
                     variable={carParameters}
                     setVariable={setCarParameters}
                     labelText={"Production Year"}
                     propertyName={"modelYear"}
+                    errorLabel={errorLabels["modelYear"]}
                 />
                 <InputField
                     variable={carParameters}
                     setVariable={setCarParameters}
                     labelText={"Milage (miles)"}
                     propertyName={"milage"}
+                    errorLabel={errorLabels["milage"]}
                 />
                 <InputField
                     variable={carParameters}
                     setVariable={setCarParameters}
                     labelText={"Fuel Type"}
                     propertyName={"fuelType"}
+                    errorLabel={errorLabels["fuelType"]}
                 />
                 <InputField
                     variable={carParameters}
                     setVariable={setCarParameters}
                     labelText={"Engine Capacity (L)"}
                     propertyName={"engineCapacity"}
+                    errorLabel={errorLabels["engineCapacity"]}
                 />
                 <InputField
                     variable={carParameters}
                     setVariable={setCarParameters}
                     labelText={"Engine Horsepower (HP)"}
                     propertyName={"engineHorsepower"}
+                    errorLabel={errorLabels["engineHorsepower"]}
                 />
                 <InputField
                     variable={carParameters}
                     setVariable={setCarParameters}
                     labelText={"Transmission Type"}
                     propertyName={"transmission"}
+                    errorLabel={errorLabels["transmission"]}
                 />
                 <InputField
                     variable={carParameters}
                     setVariable={setCarParameters}
                     labelText={"Exterior Color"}
                     propertyName={"extCol"}
+                    errorLabel={errorLabels["extCol"]}
                 />
                 <InputField
                     variable={carParameters}
                     setVariable={setCarParameters}
                     labelText={"Interior Color"}
                     propertyName={"intCol"}
+                    errorLabel={errorLabels["intCol"]}
                 />
                 <InputField
                     variable={carParameters}
                     setVariable={setCarParameters}
                     labelText={"Accident History"}
                     propertyName={"accident"}
+                    errorLabel={errorLabels["accident"]}
                 />
 
 
