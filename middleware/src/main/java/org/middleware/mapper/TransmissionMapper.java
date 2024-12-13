@@ -1,13 +1,11 @@
 package org.middleware.mapper;
 
-import org.apache.catalina.mapper.Mapper;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class TransmissionMapper {
 
-    private static Map<String, Integer> transmissions;
+    private static final Map<String, Integer> transmissions;
 
     static {
         transmissions = new HashMap<>();

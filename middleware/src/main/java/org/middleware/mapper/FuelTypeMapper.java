@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class FuelTypeMapper {
 
-    private static Map<String, Integer> fuelTypes;
+    private static final Map<String, Integer> fuelTypes;
 
     static {
         fuelTypes = new HashMap<>();

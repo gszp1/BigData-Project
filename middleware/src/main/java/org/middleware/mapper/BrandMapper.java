@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class BrandMapper {
 
-    private static Map<String, Integer> brands;
+    private static final Map<String, Integer> brands;
 
     static {
         brands = new HashMap<>();
