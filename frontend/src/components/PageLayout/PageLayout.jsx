@@ -45,6 +45,12 @@ const PageLayout = () => {
 
     const sendData = async () => {
         // let data = {...carParameters};
+        if(validateInput() == false) {
+            setErrorMessage("Values in fields are invalid. Please adjust their values according to error labels.");
+            setShowError(true);
+            return;
+        }
+
         let data = {temp: "Placeholder"};
         const ip = serverInfo.ip;
         const port = serverInfo.port;
@@ -65,6 +71,90 @@ const PageLayout = () => {
         } catch (error) {
             console.error('Error sending data:', error.message);
         }
+    }
+
+    const validateInput = () => {
+        let localErrorLabels = {...errorLabels};
+        let isValid = true;
+
+        if (!carParameters.brand.trim()) {
+            localErrorLabels.brand = "Brand is required";
+            isValid = false;
+        }
+
+        if (!carParameters.modelYear.trim()) {
+            localErrorLabels.modelYear = "Model Year is required.";
+            isValid = false;
+        } else if (isNaN(carParameters.modelYear)) {
+            localErrorLabels.modelYear = "Model Year is not a number.";
+            isValid = false;
+        } else if (Number(carParameters.modelYear) < 1885 ||
+            Number(carParameters.modelYear) > new Date().getFullYear()
+        ) {
+            localErrorLabels.modelYear = "Model year is invalid."
+            isValid = false;
+        }
+
+        if (!carParameters.milage.trim()) {
+            localErrorLabels.milage = "Mileage is required.";
+            isValid = false;
+        } else if (isNaN(carParameters.milage)) {
+            localErrorLabels.milage = "Mileage is not a number";
+            isValid = false;
+        } else if (Number(carParameters.milage) < 0) {
+            localErrorLabels.milage = "Invalid value provided.";
+            isValid = false;
+        }
+
+        if (!carParameters.engineCapacity.trim()) {
+            localErrorLabels.engineCapacity = "Engine Capacity is required.";
+            isValid = false;
+        } else if (isNaN(carParameters.engineCapacity)) {
+            localErrorLabels.engineCapacity = "Engine Capacity is not a number";
+            isValid = false;
+        } else if (Number(carParameters.engineCapacity) < 0) {
+            localErrorLabels.engineCapacity = "Invalid value provided.";
+            isValid = false;
+        }
+
+        if (!carParameters.engineHorsepower.trim()) {
+            localErrorLabels.engineHorsepower = "Engine Horsepower is required.";
+            isValid = false;
+        } else if (isNaN(carParameters.engineHorsepower)) {
+            localErrorLabels.engineHorsepower = "Engine Horsepower is not a number";
+            isValid = false;
+        } else if (Number(carParameters.engineHorsepower) < 0) {
+            localErrorLabels.engineHorsepower = "Invalid value provided.";
+            isValid = false;
+        }
+
+        if (!carParameters.transmission.trim()) {
+            localErrorLabels.transmission = "Transmission is required";
+            isValid = false;
+        }
+
+        if (!carParameters.extCol.trim()) {
+            localErrorLabels.extCol = "Exterior Color is required";
+            isValid = false;
+        }
+
+        if (!carParameters.intCol.trim()) {
+            localErrorLabels.intCol = "Interior Color is required";
+            isValid = false;
+        }
+
+        if (!carParameters.intCol.trim()) {
+            localErrorLabels.intCol = "Interior Color is required";
+            isValid = false;
+        }
+
+        if (!carParameters.fuelType.trim()) {
+            localErrorLabels.fuelType = "Fuel Type is required";
+            isValid = false;
+        }
+
+        setErrorLabels(localErrorLabels);
+        return isValid;
     }
 
     return(

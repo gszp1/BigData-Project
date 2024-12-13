@@ -3,7 +3,7 @@ import Window from "@/components/Window/Window.jsx"
 import BlurryBackground from "@/components/BlurryBackground/BlurryBackground.jsx";
 import PropTypes from "prop-types";
 
-const ErrorWindow = ({errorMessage, setShowError}) => {
+const ErrorWindow = ({message, setShowError}) => {
     const closeWindow = () => {
         setShowError(false);
     };
@@ -22,7 +22,7 @@ const ErrorWindow = ({errorMessage, setShowError}) => {
                                         Something Went Wrong!
                                     </p>
                                     <p className={styles.message}>
-                                        {errorMessage}
+                                        {message}
                                     </p>
                                 </>
                             }
@@ -35,7 +35,7 @@ const ErrorWindow = ({errorMessage, setShowError}) => {
 };
 
 ErrorWindow.propTypes = {
-    errorMessage: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired,
     setShowError: PropTypes.func.isRequired
 }
 
