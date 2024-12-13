@@ -26,9 +26,9 @@ const PageLayout = () => {
         accident: "",
     });
     const [errorLabels, setErrorLabels] = useState({
-        brand: "aa",
-        modelYear: "bb",
-        milage: "cc",
+        brand: "",
+        modelYear: "",
+        milage: "",
         engineCapacity: "",
         engineHorsepower: "",
         fuelType: "",
