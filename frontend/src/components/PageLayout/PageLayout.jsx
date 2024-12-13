@@ -77,7 +77,19 @@ const PageLayout = () => {
     }
 
     const validateInput = () => {
-        let localErrorLabels = {...errorLabels};
+        let localErrorLabels = {
+            brand: "",
+            modelYear: "",
+            milage: "",
+            engineCapacity: "",
+            engineHorsepower: "",
+            fuelType: "",
+            engine: "",
+            transmission: "",
+            extCol: "",
+            intCol: "",
+            accident: "",
+        }
         let isValid = true;
 
         const checkRequired = (fieldValue, fieldName, errorMessage) => {
