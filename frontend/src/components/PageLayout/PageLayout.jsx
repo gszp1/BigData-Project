@@ -14,16 +14,16 @@ const PageLayout = () => {
     const {serverInfo} = useServerInfo();
     const [carParameters, setCarParameters] = useState({
         brand: "",
-        model: "",
         modelYear: "",
         milage: "",
+        engine_capacity: "",
+        engine_horsepower: "",
         fuelType: "",
         engine: "",
         transmission: "",
         extCol: "",
         intCol: "",
         accident: "",
-        cleanTitle: ""
     });
 
     const [carPrice, setCarPrice] = useState(0);
