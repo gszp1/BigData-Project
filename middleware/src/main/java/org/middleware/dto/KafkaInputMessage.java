@@ -2,6 +2,7 @@ package org.middleware.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import org.middleware.mapper.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,17 +16,16 @@ import java.util.UUID;
 public class KafkaInputMessage implements Serializable {
     private String tag;
 
-    private String brand;
-
-    private String model;
+    @JsonProperty("brand_numeric")
+    private Integer brandNumeric;
 
     @JsonProperty("model_year")
     private Integer modelYear;
 
     private BigDecimal milage;
 
-    @JsonProperty("fuel_type")
-    private String fuelType;
+    @JsonProperty("fuel_type_numeric")
+    private Integer fuelTypeNumeric;
 
     @JsonProperty("engine_capacity")
     private BigDecimal engineCapacity;
@@ -33,29 +33,30 @@ public class KafkaInputMessage implements Serializable {
     @JsonProperty("engine_horsepower")
     private BigDecimal engineHorsePower;
 
-    private String transmission;
+    @JsonProperty("transmission_numeric")
+    private Integer transmissionNumeric;
 
-    @JsonProperty("ext_col")
-    private String extCol;
+    @JsonProperty("ext_col_numeric")
+    private Integer extColNumeric;
 
-    @JsonProperty("int_col")
-    private String intCol;
+    @JsonProperty("int_col_numeric")
+    private Integer intColNumeric;
 
-    private String accident;
+    @JsonProperty("accident_numeric")
+    private Integer accidentNumeric;
 
     public static KafkaInputMessage fromPriceRequest(PriceRequest priceRequest, String tag) {
         var inputMessage = KafkaInputMessage.builder()
-                .brand(priceRequest.brand())
-                .model(priceRequest.model())
+                .brandNumeric(BrandMapper.getBrandValue(priceRequest.brand()))
                 .modelYear(priceRequest.modelYear())
                 .milage(priceRequest.milage())
-                .fuelType(priceRequest.fuelType())
+                .fuelTypeNumeric(FuelTypeMapper.getFuelTypeValue(priceRequest.fuelType()))
                 .engineCapacity(priceRequest.engineCapacity())
                 .engineHorsePower(priceRequest.engineHorsePower())
-                .transmission(priceRequest.transmission())
-                .extCol(priceRequest.extCol())
-                .intCol(priceRequest.intCol())
-                .accident(priceRequest.accident())
+                .transmissionNumeric(TransmissionMapper.getTransmissionValue(priceRequest.transmission()))
+                .extColNumeric(ExteriorColorMapper.getExteriorColorValue(priceRequest.extCol()))
+                .intColNumeric(InteriorColorMapper.getInteriorColorValue(priceRequest.intCol()))
+                .accidentNumeric(AccidentMapper.getAccidentValue(priceRequest.accident()))
                 .build();
         if (tag == null) {
             inputMessage.tag = UUID.randomUUID().toString();
@@ -69,17 +70,16 @@ public class KafkaInputMessage implements Serializable {
     public String toString() {
         return "{" +
                 "tag='" + tag + '\'' +
-                ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
+                ", brandNumeric=" + brandNumeric +
                 ", modelYear=" + modelYear +
                 ", milage=" + milage +
-                ", fuelType='" + fuelType + '\'' +
+                ", fuelTypeNumeric=" + fuelTypeNumeric +
                 ", engineCapacity=" + engineCapacity +
                 ", engineHorsePower=" + engineHorsePower +
-                ", transmission='" + transmission + '\'' +
-                ", extCol='" + extCol + '\'' +
-                ", intCol='" + intCol + '\'' +
-                ", accident='" + accident + '\'' +
+                ", transmissionNumeric=" + transmissionNumeric +
+                ", extColNumeric=" + extColNumeric +
+                ", intColNumeric=" + intColNumeric +
+                ", accidentNumeric=" + accidentNumeric +
                 '}';
     }
 }
