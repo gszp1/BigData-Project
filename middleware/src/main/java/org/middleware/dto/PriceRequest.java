@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 public record PriceRequest(
         String brand,
-        String model,
         Integer modelYear,
         BigDecimal milage,
         String fuelType,
@@ -19,7 +18,6 @@ public record PriceRequest(
     public String toString() {
         return "{" +
                 "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
                 ", modelYear=" + modelYear +
                 ", milage=" + milage +
                 ", fuelType='" + fuelType + '\'' +
