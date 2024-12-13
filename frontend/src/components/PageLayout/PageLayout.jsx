@@ -44,14 +44,13 @@ const PageLayout = () => {
     const [showError, setShowError] = useState(false);
 
     const sendData = async () => {
-        // let data = {...carParameters};
-        if(validateInput() == false) {
+        let data = {...carParameters};
+        if(!validateInput()) {
             setErrorMessage("Values in fields are invalid. Please adjust their values according to error labels.");
             setShowError(true);
             return;
         }
 
-        let data = {temp: "Placeholder"};
         const ip = serverInfo.ip;
         const port = serverInfo.port;
         const address = `http://${ip}:${port}/api/car-price`;
@@ -65,11 +64,15 @@ const PageLayout = () => {
                     }
                 }
             );
-            console.log(response.data);
             setCarPrice(response.data.price);
             setShowPrice(true);
         } catch (error) {
-            console.error('Error sending data:', error.message);
+            if (error.response && error.response.status == 500) {
+                setErrorMessage(error.data.message);
+            } else {
+                setErrorMessage(error.message || "Unexpected error occurred during request hadling.");   
+            }
+            setShowError(true);
         }
     }
 
