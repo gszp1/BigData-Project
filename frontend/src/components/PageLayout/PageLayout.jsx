@@ -16,8 +16,8 @@ const PageLayout = () => {
         brand: "",
         modelYear: "",
         milage: "",
-        engine_capacity: "",
-        engine_horsepower: "",
+        engineCapacity: "",
+        engineHorsepower: "",
         fuelType: "",
         engine: "",
         transmission: "",
@@ -29,7 +29,7 @@ const PageLayout = () => {
     const [carPrice, setCarPrice] = useState(0);
     const [showPrice, setShowPrice] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-    const [showError, setShowError] = useState(true);
+    const [showError, setShowError] = useState(false);
 
     const sendData = async () => {
         // let data = {...carParameters};
@@ -103,12 +103,6 @@ const PageLayout = () => {
                 <InputField
                     variable={carParameters}
                     setVariable={setCarParameters}
-                    labelText={"Model"}
-                    propertyName={"model"}
-                />
-                <InputField
-                    variable={carParameters}
-                    setVariable={setCarParameters}
                     labelText={"Production Year"}
                     propertyName={"modelYear"}
                 />
@@ -127,13 +121,19 @@ const PageLayout = () => {
                 <InputField
                     variable={carParameters}
                     setVariable={setCarParameters}
-                    labelText={"Engine Type"}
-                    propertyName={"engine"}
+                    labelText={"Engine Capacity (L)"}
+                    propertyName={"engineCapacity"}
                 />
                 <InputField
                     variable={carParameters}
                     setVariable={setCarParameters}
-                    labelText={"Transmission"}
+                    labelText={"Engine Horsepower (HP)"}
+                    propertyName={"engineHorsepower"}
+                />
+                <InputField
+                    variable={carParameters}
+                    setVariable={setCarParameters}
+                    labelText={"Transmission Type"}
                     propertyName={"transmission"}
                 />
                 <InputField
@@ -153,12 +153,6 @@ const PageLayout = () => {
                     setVariable={setCarParameters}
                     labelText={"Accident History"}
                     propertyName={"accident"}
-                />
-                <InputField
-                    variable={carParameters}
-                    setVariable={setCarParameters}
-                    labelText={"Clean Title"}
-                    propertyName={"cleanTitle"}
                 />
 
 
