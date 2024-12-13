@@ -149,6 +149,8 @@ const PageLayout = () => {
 
         checkRequired(carParameters.intCol, 'intCol', 'Interior Color is required');
 
+        checkRequired(carParameters.fuelType, 'fuelType', "Fuel Type is required");
+
         setErrorLabels(localErrorLabels);
         return isValid;
     }
