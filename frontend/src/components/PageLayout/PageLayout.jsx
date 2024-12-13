@@ -77,81 +77,74 @@ const PageLayout = () => {
         let localErrorLabels = {...errorLabels};
         let isValid = true;
 
-        if (!carParameters.brand.trim()) {
-            localErrorLabels.brand = "Brand is required";
-            isValid = false;
-        }
+        const checkRequired = (fieldValue, fieldName, errorMessage) => {
+            if (!fieldValue.trim()) {
+                localErrorLabels[fieldName] = errorMessage;
+                isValid = false;
+            }
+        };
 
-        if (!carParameters.modelYear.trim()) {
-            localErrorLabels.modelYear = "Model Year is required.";
-            isValid = false;
-        } else if (isNaN(carParameters.modelYear)) {
-            localErrorLabels.modelYear = "Model Year is not a number.";
-            isValid = false;
-        } else if (Number(carParameters.modelYear) < 1885 ||
-            Number(carParameters.modelYear) > new Date().getFullYear()
-        ) {
-            localErrorLabels.modelYear = "Model year is invalid."
-            isValid = false;
-        }
+        const checkNumberField = (fieldValue, fieldName, { requiredMessage, notNumberMessage, min, max, invalidMessage }) => {
+            if (!fieldValue.trim()) {
+                localErrorLabels[fieldName] = requiredMessage;
+                isValid = false;
+                return;
+            }
+            
+            const numericValue = Number(fieldValue);
+            if (isNaN(numericValue)) {
+                localErrorLabels[fieldName] = notNumberMessage;
+                isValid = false;
+                return;
+            }
+            
+            if (min !== undefined && numericValue < min) {
+                localErrorLabels[fieldName] = invalidMessage;
+                isValid = false;
+            }
+            
+            if (max !== undefined && numericValue > max) {
+                localErrorLabels[fieldName] = invalidMessage;
+                isValid = false;
+            }
+        };
 
-        if (!carParameters.milage.trim()) {
-            localErrorLabels.milage = "Mileage is required.";
-            isValid = false;
-        } else if (isNaN(carParameters.milage)) {
-            localErrorLabels.milage = "Mileage is not a number";
-            isValid = false;
-        } else if (Number(carParameters.milage) < 0) {
-            localErrorLabels.milage = "Invalid value provided.";
-            isValid = false;
-        }
+        checkRequired(carParameters.brand, 'brand', 'Brand is required');
 
-        if (!carParameters.engineCapacity.trim()) {
-            localErrorLabels.engineCapacity = "Engine Capacity is required.";
-            isValid = false;
-        } else if (isNaN(carParameters.engineCapacity)) {
-            localErrorLabels.engineCapacity = "Engine Capacity is not a number";
-            isValid = false;
-        } else if (Number(carParameters.engineCapacity) < 0) {
-            localErrorLabels.engineCapacity = "Invalid value provided.";
-            isValid = false;
-        }
+        checkNumberField(carParameters.modelYear, 'modelYear', {
+            requiredMessage: "Model Year is required.",
+            notNumberMessage: "Model Year is not a number.",
+            min: 1885,
+            max: new Date().getFullYear(),
+            invalidMessage: "Model year is invalid."
+        });
 
-        if (!carParameters.engineHorsepower.trim()) {
-            localErrorLabels.engineHorsepower = "Engine Horsepower is required.";
-            isValid = false;
-        } else if (isNaN(carParameters.engineHorsepower)) {
-            localErrorLabels.engineHorsepower = "Engine Horsepower is not a number";
-            isValid = false;
-        } else if (Number(carParameters.engineHorsepower) < 0) {
-            localErrorLabels.engineHorsepower = "Invalid value provided.";
-            isValid = false;
-        }
+        checkNumberField(carParameters.milage, 'milage', {
+            requiredMessage: "Mileage is required.",
+            notNumberMessage: "Mileage is not a number",
+            min: 0,
+            invalidMessage: "Invalid value provided."
+        });
 
-        if (!carParameters.transmission.trim()) {
-            localErrorLabels.transmission = "Transmission is required";
-            isValid = false;
-        }
+        checkNumberField(carParameters.engineCapacity, 'engineCapacity', {
+            requiredMessage: "Engine Capacity is required.",
+            notNumberMessage: "Engine Capacity is not a number",
+            min: 0,
+            invalidMessage: "Invalid value provided."
+        });
 
-        if (!carParameters.extCol.trim()) {
-            localErrorLabels.extCol = "Exterior Color is required";
-            isValid = false;
-        }
+        checkNumberField(carParameters.engineHorsepower, 'engineHorsepower', {
+            requiredMessage: "Engine Horsepower is required.",
+            notNumberMessage: "Engine Horsepower is not a number",
+            min: 0,
+            invalidMessage: "Invalid value provided."
+        });
 
-        if (!carParameters.intCol.trim()) {
-            localErrorLabels.intCol = "Interior Color is required";
-            isValid = false;
-        }
+        checkRequired(carParameters.transmission, 'transmission', 'Transmission is required');
 
-        if (!carParameters.intCol.trim()) {
-            localErrorLabels.intCol = "Interior Color is required";
-            isValid = false;
-        }
+        checkRequired(carParameters.extCol, 'extCol', 'Exterior Color is required');
 
-        if (!carParameters.fuelType.trim()) {
-            localErrorLabels.fuelType = "Fuel Type is required";
-            isValid = false;
-        }
+        checkRequired(carParameters.intCol, 'intCol', 'Interior Color is required');
 
         setErrorLabels(localErrorLabels);
         return isValid;
