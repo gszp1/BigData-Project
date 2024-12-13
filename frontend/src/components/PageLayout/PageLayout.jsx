@@ -26,7 +26,7 @@ const PageLayout = () => {
     });
 
     const [carPrice, setCarPrice] = useState(0);
-    const [showPrice, setShowPrice] = useState(false);
+    const [showPrice, setShowPrice] = useState(true);
 
     const sendData = async () => {
         // let data = {...carParameters};

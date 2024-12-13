@@ -5,7 +5,10 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 const Window =( { content, closeWindow } ) => {
     return (
-        <div className={styles.window}>
+        <div 
+            className={styles.window}
+            onClick={(e) => e.stopPropagation()}
+        >
             <div className={styles.button_container}>
                 <button 
                     className={styles.exit_button}
