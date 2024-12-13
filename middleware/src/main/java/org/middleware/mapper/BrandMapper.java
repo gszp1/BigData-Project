@@ -68,7 +68,8 @@ public class BrandMapper {
     }
 
     public static Integer getBrandValue(String brand) {
-        return values.get(brand.strip().toLowerCase());
+        var value = values.get(brand.strip().toLowerCase());
+        return value == null ? values.size() : value;
     }
 
 }
