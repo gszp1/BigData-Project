@@ -10,7 +10,7 @@ public class TransmissionMapper {
     private static Map<String, Integer> transmissions;
 
     static {
-        transmissions = new HashMap<String, Integer>();
+        transmissions = new HashMap<>();
         transmissions.put("automatic", 0);
         transmissions.put("other", 1);
         transmissions.put("manual", 2);
