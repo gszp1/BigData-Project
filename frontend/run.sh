@@ -1,4 +1,4 @@
-#!/bin.bash
+#!/bin/bash
 
 # Builds docker image from local Dockerfile and sets image name to "frontend-image"
 docker build -t frontend-image .
