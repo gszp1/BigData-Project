@@ -1,0 +1,27 @@
+.price_field {
+    width: 100%;
+    height: calc(50% - 20px);
+    display: flex;
+    justify-content: center;
+    font-family: "Anton", cursive;
+    font-style: oblique;
+    font-size: 3.5rem;
+    font-weight: 100;
+}
+
+.window_text {
+    width: 100%;
+    height: calc(50% - 20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: "Anton", cursive;
+    font-style: oblique;
+    font-size: 3rem;
+    font-weight: 100;
+
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}

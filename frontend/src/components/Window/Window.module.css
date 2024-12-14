@@ -1,0 +1,59 @@
+.window {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    top: calc(50% - 200px);
+    left: calc(50% - 360px);
+    z-index: 1000;
+
+    width: 720px;
+    height: 400px;
+    border: 1px solid black;
+
+    background: conic-gradient(from .5turn at bottom center, lightblue, white);
+    box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease-in-out;
+}
+
+.window:hover {
+    transform: scale(1.03);
+    transition: transform 0.3s ease;
+}
+
+.exit_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 40px;
+    height: 40px;
+
+    background-color: rgb(255, 0, 0);
+    color: white;
+
+    border: 1px gray solid;
+    font-size: 30px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: color 0.4s ease, color 0.4s ease;
+}
+
+.button_container {
+    display: flex;
+    justify-content: end;
+    height: 40px;
+    width: 100%;
+
+}
+
+.exit_button:hover {
+    background-color: rgb(150, 0, 0);
+    color: gray;
+}
+
+.exit_button:active {
+    background-color: rgb(100, 0, 0);
+    color: darkgray;
+}
