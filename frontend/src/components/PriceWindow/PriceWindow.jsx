@@ -22,7 +22,7 @@ const PriceWindow = ({ price, currencySign, setShowWindow }) => {
                                 Estimated price of your car
                             </p>
                             <p className={styles.price_field}>
-                                {`${price}  ${currencySign}`}
+                                {`${Number(price).toFixed(2)}  ${currencySign}`}
                             </p>
                         </>
                         }
