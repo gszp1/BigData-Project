@@ -1,5 +1,0 @@
-18:07:34.251 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener -- Restarting due to 2 class path changes (0 additions, 0 deletions, 2 modifications)
-18:07:34.255 [Thread-5] INFO  o.s.b.w.e.tomcat.GracefulShutdown -- Commencing graceful shutdown. Waiting for active requests to complete
-18:07:34.257 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol -- Pausing ProtocolHandler ["http-nio-9090"]
-18:07:34.258 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown -- Graceful shutdown complete
-18:07:34.259 [Thread-5] INFO  o.a.coyote.http11.Http11NioProtocol -- Stopping ProtocolHandler ["http-nio-9090"]
