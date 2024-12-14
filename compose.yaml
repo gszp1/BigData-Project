@@ -1,0 +1,76 @@
+version: '3.8'
+  
+networks:
+  backend_network:
+    driver: bridge
+
+services:
+  zookeeper:
+    image: docker.io/bitnami/zookeeper:3.8.4
+    container_name: zookeeper
+    networks:
+      - backend_network
+    ports:
+      - "2181:2181"
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    
+  kafka:
+    image: docker.io/bitnami/kafka:3.8.1
+    container_name: kafka
+    networks:
+      - backend_network
+    ports: 
+      - "9093:9093"
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT
+      - KAFKA_CFG_LISTENERS=CLIENT://:9092,EXTERNAL://:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://kafka:9092,EXTERNAL://localhost:9093
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=CLIENT
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_ZOOKEEPER_TLS_VERIFY_HOSTNAME=false
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+    depends_on:
+      zookeeper:
+        condition: service_started
+    
+  middleware: 
+    build:
+      context: ./middleware
+      dockerfile: Dockerfile
+    container_name: middleware
+    networks:
+      - backend_network
+    ports:
+      - "9090:9090"
+    environment:
+      - SPRING_PROFILES_ACTIVE=container
+      - APPLICATION_PORT=9090
+      - PRODUCER_TOPIC_NAME=input
+      - PRODUCER_BOOTSTRAP_SERVER=kafka:9092
+      - PRODUCER_RETRIES=3
+      - PRODUCER_ACKS=all
+      - CONSUMER_TOPIC_NAME=output
+      - CONSUMER_BOOTSTRAP_SERVER=kafka:9092
+      - CONSUMER_GROUP_ID=output-consumers
+      - CONSUMER_AUTO_OFFSET_RESET=latest
+    depends_on:
+      kafka:
+        condition: service_started
+
+  kafka-init:
+    image: docker.io/bitnami/kafka:3.8.1
+    networks:
+      - backend_network
+    command: [ "/bin/bash", "-c", "/topics_init.sh"]
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+    depends_on:
+      kafka:
+        condition: service_started
+    volumes:
+      - type: bind
+        source: ./topics_init.sh
+        target: /topics_init.sh
+    init: true
