@@ -49,14 +49,19 @@ od serwisu z modelem predykcyjnym, z których wybiera wiadomości i przesyła na
 4. Serwis predykcyjny - Zawiera wyuczony model predykcyjny, przewiduje ceny na podstawie cech dostarczonych przez użytkownika. Zapisuje wyniki do kafki.
 
 ### Uruchamianie
-    Wszystkie komponenty aplikacji są skonteneryzowane przy użyciu narzędzia Docker oraz Docker Compose, co znaczniie przyśpiesza proces uruchamiania komponentów,
-    eliminuje potrzebę ręcznej konfiguracji oraz zapewnia, że użytkownik może uruchomić aplikację w dowolnym środowisku, pod warunkiem, że posiada zainstalowane
-    narzędzia Docker oraz Docker Compose. Zawartość skryptów uruchomieniowych jest podany w ostatniej sekcji tego opisu.
+    Wszystkie komponenty aplikacji są skonteneryzowane przy użyciu narzędzia Docker
+    oraz Docker Compose, co znacznie przyśpiesza proces uruchamiania komponentów,
+    eliminuje potrzebę ręcznej konfiguracji, oraz zapewnia, że użytkownik może uruchomić 
+    aplikację w dowolnym środowisku, pod warunkiem, że posiada zainstalowane
+    narzędzia Docker oraz Docker Compose. Zawartość skryptów uruchomieniowych
+    jest podana w ostatniej sekcji tego opisu.
 
-    1. Frontend - Otworzyć katalog frontend i wewnątrz niego uruchomić komendę run.sh lub uruchomić ręcznie komendy w terminalu. Wyłączenia kontenera można dokonać
+    1. Frontend - Otworzyć katalog frontend i wewnątrz niego uruchomić komendę run.sh
+       lub uruchomić ręcznie komendy w terminalu. Wyłączenia kontenera można dokonać
        skryptem clean.sh (Uwaga: skrypt ten usuwa kontener oraz jego obraz!).
-    2. Komponent komunikacyjny oraz Middleware - wejść do katalogu projektu i uruchomić skrypt restart.sh, lub uruchomić ręcznie komendy w terminalu. Dodatkowo,
-       utworzony został skrypt restart.sh, który pozwala wyłączyć, usunąć i na nowo uruchomić kontenery.
+    2. Komponent komunikacyjny oraz Middleware - wejść do katalogu projektu i uruchomić skrypt restart.sh,
+       lub uruchomić ręcznie komendy w terminalu. Dodatkowo, utworzony został skrypt restart.sh,
+       który pozwala wyłączyć, usunąć i na nowo uruchomić kontenery.
     3  Serwis predykcyjny - TODO
 
 ### Porty
@@ -74,7 +79,8 @@ od serwisu z modelem predykcyjnym, z których wybiera wiadomości i przesyła na
 
 #### Wytłumaczenia
     Komponent - nazwa kompoenentu aplikacji
-    Port hosta - port na maszynie hosta (maszynie, na której uruchamiane są kontenery), można się połączyć nim z komponentem z poza sieci kontenerowej
+    Port hosta - port na maszynie hosta (maszynie, na której uruchamiane są kontenery),
+                 można się połączyć nim z komponentem z poza sieci kontenerowej
     Port kontenera - port wykorzystywany używany wewnątrz kontenera
     Kafka* - port, z którym łączą się pozostałe kontenery
     Zookeeper* - porty wystawiane dla innych kontenerów
