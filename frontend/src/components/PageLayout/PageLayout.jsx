@@ -69,7 +69,7 @@ const PageLayout = () => {
             setShowPrice(true);
         } catch (error) {
             if (error.response && error.response.status == 500) {
-                setErrorMessage(error.data.message);
+                setErrorMessage(error.response.data.message);
             } else {
                 setErrorMessage(error.message || "Unexpected error occurred during request hadling.");   
             }
