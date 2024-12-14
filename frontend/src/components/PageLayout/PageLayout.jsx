@@ -5,10 +5,12 @@ import EstimateButton from "@/components/EstimateButton/EstimateButton.jsx";
 import styles from "@/components/PageLayout/PageLayout.module.css";
 import InputField from "@/components/InputField/InputField.jsx";
 import ErrorWindow from "@/components/ErrorWindow/ErrorWindow.jsx";
-import { useState } from 'react';
+import InputList from "@/components/InputList/InputList.jsx";
 import PriceWindow from "@/components/PriceWindow/PriceWindow.jsx";
-import {useServerInfo} from '@/ServerContext.jsx';
 import axios from 'axios';
+import { useState } from 'react';
+import {useServerInfo} from '@/ServerContext.jsx';
+
 
 const PageLayout = () => {
     const {serverInfo} = useServerInfo();
@@ -40,6 +42,7 @@ const PageLayout = () => {
     const [showPrice, setShowPrice] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const [showError, setShowError] = useState(false);
+    const accidentTypes = ["", "None reported", "At least 1 accident or damage reported"];
 
     const sendData = async () => {
         let data = {...carParameters};
@@ -266,12 +269,13 @@ const PageLayout = () => {
                     propertyName={"intCol"}
                     errorLabel={errorLabels["intCol"]}
                 />
-                <InputField
+                <InputList
                     variable={carParameters}
                     setVariable={setCarParameters}
                     labelText={"Accident History"}
                     propertyName={"accident"}
                     errorLabel={errorLabels["accident"]}
+                    values={accidentTypes}
                 />
 
 
