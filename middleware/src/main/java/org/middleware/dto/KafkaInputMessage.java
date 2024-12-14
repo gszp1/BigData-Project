@@ -53,7 +53,7 @@ public class KafkaInputMessage implements Serializable {
                 .mileage(priceRequest.milage())
                 .fuelTypeNumeric(FuelTypeMapper.getFuelTypeValue(priceRequest.fuelType()))
                 .engineCapacity(priceRequest.engineCapacity())
-                .engineHorsePower(priceRequest.engineHorsePower())
+                .engineHorsePower(priceRequest.engineHorsepower())
                 .transmissionNumeric(TransmissionMapper.getTransmissionValue(priceRequest.transmission()))
                 .extColNumeric(ExteriorColorMapper.getExteriorColorValue(priceRequest.extCol()))
                 .intColNumeric(InteriorColorMapper.getInteriorColorValue(priceRequest.intCol()))
@@ -76,7 +76,7 @@ public class KafkaInputMessage implements Serializable {
                 ", milage=" + mileage +
                 ", fuelTypeNumeric=" + fuelTypeNumeric +
                 ", engineCapacity=" + engineCapacity +
-                ", engineHorsePower=" + engineHorsePower +
+                ", engineHorsepower=" + engineHorsePower +
                 ", transmissionNumeric=" + transmissionNumeric +
                 ", extColNumeric=" + extColNumeric +
                 ", intColNumeric=" + intColNumeric +
