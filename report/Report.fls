@@ -147,6 +147,11 @@ INPUT ./images/error_view.png
 INPUT ./images/error_view.png
 INPUT ./images/error_view.png
 INPUT ./images/error_view.png
+INPUT ./diagrams/use_case_diagram.png
+INPUT ./diagrams/use_case_diagram.png
+INPUT ./diagrams/use_case_diagram.png
+INPUT ./diagrams/use_case_diagram.png
+INPUT ./diagrams/use_case_diagram.png
 INPUT Report.aux
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmr10.pfb
