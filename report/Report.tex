@@ -4,6 +4,12 @@
 \usepackage[polish]{babel}
 \usepackage{titling}
 \usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage[a4paper, margin=1in, top=0.5in, bottom=1in]{geometry}
+\usepackage{footnote}
+
+\setlength{\parindent}{1cm}
+\setlength{\parskip}{0cm}
 
 % notes:
 % - In polish we write titles of projects, chapters, sections with only first letter of first word large
@@ -48,5 +54,42 @@ Predykcja cen samochodów używanych''
 \tableofcontents
 \thispagestyle{empty}
 \newpage
+
+% chapter 1 - Introduction
+\chapter{Wstęp}
+\section{Założenia projektowe}
+Celem projektu jest zaimplementowanie aplikacji webowej pozwalającej użytkownikom na predykcję 
+ceny używanego samochodu na podstawie dostarczonego przez niego zestawu cech. Tematyka projektu
+daje możliwość wykorzystania różnorodnych technologii z dziedziny uczenia maszynowego, rozwoju
+aplikacji webowych, komunikacji pomiędzy serwisami,architektury oprogramowania oraz bierania i 
+przetwarzania danych. W celu zrealizowania przewidywanych funkcjonalności, aplikacja została
+podzielona na cztery komponenty, każdy z nich odpowiedzialny za realizację innego aspektu
+aplikacji.
+\section{Wykorzystane technologie}
+\begin{itemize}
+    \item Java --- Obiektowy język programowania.
+    \item SpringBoot --- Framework dla języka Java nastawiony na wytwarzanie aplikacji webowych i mikroserwisów
+    \item Gradle --- Narzędzie do automatyzacji budowania projektów.
+    \item React --- Framework JavaScript do tworzenia interfejsów użytkownika w oparciu o komponenty.
+    \item Docker --- Narzędzie do tworzenia, uruchamiania i zarządzania aplikacjami w izolowanych środowiskach zwanych kontnerami.
+    \item Docker Compose --- Narzędzie usprawniające zarządzanie wieloma kontenerami jednocześnie.
+    \item Python --- Język skryptowy. 
+    \item Apache Spark --- Framework do sprawnego przetwarzania zbiorów danych w pamięci.
+    \item Apache SparkML --- Moduł Apache Spark przeznaczony do uczenia maszynowego.
+    \item Apache Kafka --- Platforma przetwarzania danych w czasie rzeczywistym.
+    \item Apache Zookeeper --- Usługa koordynacyjna systemów rozproszonych.
+\end{itemize}
+
+\chapter{Aplikacja kliencka}
+\section{Opis}
+Aplikacja kliencka stanowi pojedynczą stronę dostępną za pośrednictwem przeglądarki,
+udostępnianą pod adresem \textbf{localhost}\footnote{loopback address --- adres pętli zwrotnej, który jest wykorzystywany do komunikacji urządzenia z samym sobą.},
+na porcie \textbf{9091}. Strona zawiera informacje związane z aplikacją oraz pola do wprowadzania wartości,
+na podstawie których następnie dokonywana jest predykcja ceny samochodu. Aplikacja łączy się z komponentem
+middleware za pośrednictwem protokołu \textbf{HTTP}\footnote{HyperText Transfer Protocol --- protokół komunikacyjny używany do przesyłania danych w sieci.}
+ w architekturze 
+\textbf{REST}\footnote{Representational State Transfer --- architektura komunikacji oparta o protokół HTTP
+    definiujący sposoby identyfikacji i manipulacji zasobami za pomocą zapytań HTTP.}.\@
+\section{Widoki aplikacji}
 
 \end{document}
