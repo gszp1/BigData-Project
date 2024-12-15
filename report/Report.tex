@@ -62,7 +62,7 @@ Predykcja cen samochodów używanych''
 Celem projektu jest zaimplementowanie aplikacji webowej pozwalającej użytkownikom na predykcję 
 ceny używanego samochodu na podstawie dostarczonego przez niego zestawu cech. Tematyka projektu
 daje możliwość wykorzystania różnorodnych technologii z dziedziny uczenia maszynowego, rozwoju
-aplikacji webowych, komunikacji pomiędzy serwisami,architektury oprogramowania oraz bierania i 
+aplikacji webowych, komunikacji pomiędzy serwisami, architektury oprogramowania oraz bierania i 
 przetwarzania danych. W celu zrealizowania przewidywanych funkcjonalności, aplikacja została
 podzielona na cztery komponenty, każdy z nich odpowiedzialny za realizację innego aspektu
 aplikacji.
@@ -73,20 +73,16 @@ aplikacji.
     \item Komponent komunikacyjny --- Komponent zawierający szyny danych, które są wykorzystywane do dostarczania i odbierania informacji od serwisu predykcyjnego
     \item Serwis predykcyjny --- Komponent dokonujący predykcji na podstawie dostarczonych danych, z wykorzytaniem nauczonego modelu.
 \end{itemize}
-\section{Wykorzystane technologie}
-\begin{itemize}
-    \item Java --- Obiektowy język programowania.
-    \item SpringBoot --- Framework dla języka Java nastawiony na wytwarzanie aplikacji webowych i mikroserwisów
-    \item Gradle --- Narzędzie do automatyzacji budowania projektów.
-    \item React --- Framework JavaScript do tworzenia interfejsów użytkownika w oparciu o komponenty.
-    \item Docker --- Narzędzie do tworzenia, uruchamiania i zarządzania aplikacjami w izolowanych środowiskach zwanych kontnerami.
-    \item Docker Compose --- Narzędzie usprawniające zarządzanie wieloma kontenerami jednocześnie.
-    \item Python --- Język skryptowy. 
-    \item Apache Spark --- Framework do sprawnego przetwarzania zbiorów danych w pamięci.
-    \item Apache SparkML --- Moduł Apache Spark przeznaczony do uczenia maszynowego.
-    \item Apache Kafka --- Platforma przetwarzania danych w czasie rzeczywistym.
-    \item Apache Zookeeper --- Usługa koordynacyjna systemów rozproszonych.
-\end{itemize}
+\section{Konteneryzacja}
+Wszystkie komponenty zostały skonteneryzowane za pomocą narzędzi
+\textbf{Docker}\footnote{Narzędzie do tworzenia, uruchamiania i zarządzania aplikacjami w izolowanych środowiskach zwanych kontnerami.}
+i \textbf{Docker Compose}\footnote{Narzędzie usprawniające zarządzanie wieloma kontenerami jednocześnie.}, co pozwala na uruchomienie projektu
+bez konieczności dodatkowej konfiguracji.\ \textbf{Obrazy}\footnote{Gotowy do uruchomienia szablon do tworzenia kontenerów, zawierający system plików, aplikację i jej zależności.}
+ \textbf{kontenerów}\footnote{Lekkie, izolowane środowisko uruchomieniowe, które zawiera aplikację wraz z jej zależnościami. }
+dla aplikacji klienckiej oraz pośrednika zostały zdefiniowane za pomocą
+plików \textbf{Dockerfile}\footnote{Plik tekstowy zawierający zestaw instrukcji do zbudowania obrazu Docker.},
+natomiast dla komponentu komunikacyjnego wykorzystano gotowe obrazy Apache Kafka i Zookeeper z rejestru Docker.io.\\[0cm]
+
 
 \chapter{Aplikacja kliencka}
 \section{Opis}
@@ -98,6 +94,16 @@ middleware za pośrednictwem protokołu \textbf{HTTP}\footnote{HyperText Transfe
  w architekturze 
 \textbf{REST}\footnote{Representational State Transfer --- architektura komunikacji oparta o protokół HTTP
     definiujący sposoby identyfikacji i manipulacji zasobami za pomocą zapytań HTTP.}.\@
+\section{Technologie}
+\begin{itemize}
+    \item React --- Framework JavaScript do tworzenia interfejsów użytkownika w oparciu o komponenty.
+    \item HTML --- Język znaczników do tworzenia struktury strony internetowej.
+    \item CSS --- Język stylów wykorzystywany do definiowania wyglądu stron internetowych.
+    \item JavaScript --- Język programowania wykorzystywany do tworzenia dynamicznych i interaktywnych elementów stron internetowych.
+    \item Axios --- Biblioteka JavaScript służąca do wykonywania zapytań HTTP.\@
+    \item Vite --- Narzędzie do budowania i uruchamiania aplikacji front-endowych. 
+\end{itemize}
+\newpage
 \section{Widoki aplikacji}
 \subsection{Strona}
 \begin{figure}[H]
@@ -118,25 +124,46 @@ middleware za pośrednictwem protokołu \textbf{HTTP}\footnote{HyperText Transfe
     \caption{Widok okna z błędem}
 \end{figure}
 
-\chapter{Komponent pośredniczący i komunikacyjny}
-\section{Komponent pośredniczący}
-\subsection{Opis}
+
+\chapter{Komponent pośredniczący}
+\section{Opis}
 Komponent pośrediczący pełni rolę pośrednika pomiędzy aplikacją kliencką i serwisem predykcyjnym.
 Otrzymywane od \textbf{frontendu}\footnote{Część aplikacji, z którą użytkownik wchodzi w bezpośednią interakcję, w tym wszystko co widzi oraz elementy wizualne i interaktywne.}
 dane w formie \textbf{JSON}\footnote{JavaScript Object Notation --- format danych zapewniający kompaktowe rozmiary i jest czytelny dla ludzi i maszyn.}
 są w tym komponencie przetwarzane na wiadomości w formacie odpowiadającym wejściu modelu, z uwzględnieniem procesu \textbf{kodowania liczbowego}\footnote{
 Technika zamiany wartości danych tekstowych na wartości liczbowe, poprzez przypisanie unikalnej liczby każdej unikalnej wartości tekstowej.
-} pól. Otrzymane
-w tym procesie wiadomości zapisywane są na \textbf{temat}\footnote{Podstawowy komponent Apache Kafka służący do kategoryzacji napływających wiadomości.}
+} pól. Otrzymane w tym procesie wiadomości zapisywane są na \textbf{temat}\footnote{Podstawowy komponent Apache Kafka służący do kategoryzacji napływających wiadomości.}
  wejściowy Kafki. Pośrednik jest również odpowiedzialny za odczytywanie danych z tematu wyjściowego i
 przekazywanie uzyskanych z nich informacji do klienta.
-\section{Komponent komunikacyjny}
-\subsection{Opis}
+\section{Technologie}
+\begin{itemize}
+    \item Java --- Obiektowy język programowania.
+    \item SpringBoot --- Framework dla języka Java nastawiony na wytwarzanie aplikacji webowych i mikroserwisów
+    \item Gradle --- Narzędzie do automatyzacji budowania projektów.
+\end{itemize}
+\chapter{Komponent komunikacyjny}
+\section{Opis}
 Komponent komunikacyjny odpowiedzialny jest za transport danych pomiędzy komponentem pośredniczącym i serwisem predykcyjnym.
 Wykorzystuje w tym celu skonteneryzowany \textbf{broker}\footnote{Serwer Apache Kafka zawierający dane należace do tematów i partycji, na które może być podzielony temat}
 wiadomości Apache Kafka wraz z dwoma tematami input oraz output, wykorzystywanych
 odpowiednio do gromadzenia danych odczytywanych przez serwis predykcyjny i gromadzenia danych odczytywanych przez pośrednika.
 Do zarządzania brokerem wykorzystywany jest Apache Zookeeper.
+\section{Technologie}
+\begin{itemize}
+    \item Apache Kafka --- Platforma przetwarzania danych w czasie rzeczywistym.
+    \item Apache Zookeeper --- Usługa koordynacyjna systemów rozproszonych.
+\end{itemize}
+
+
+\chapter{Serwis predykcyjny}
+\section{Opis}
+\section{Technologie}
+\begin{itemize}
+    \item Python --- Język skryptowy. 
+    \item Apache Spark --- Framework do sprawnego przetwarzania zbiorów danych w pamięci.
+    \item Apache SparkML --- Moduł Apache Spark przeznaczony do uczenia maszynowego.
+\end{itemize}
+
 
 \chapter{Diagramy}
 \section{Diagram przypadków użycia}
