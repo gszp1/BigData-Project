@@ -4,4 +4,7 @@
 \contentsline {section}{\numberline {1.2}Wykorzystane technologie}{2}{}%
 \contentsline {chapter}{\numberline {2}Aplikacja kliencka}{3}{}%
 \contentsline {section}{\numberline {2.1}Opis}{3}{}%
-\contentsline {section}{\numberline {2.2}Widoki aplikacji}{3}{}%
+\contentsline {section}{\numberline {2.2}Widoki aplikacji}{4}{}%
+\contentsline {subsection}{\numberline {2.2.1}Strona}{4}{}%
+\contentsline {subsection}{\numberline {2.2.2}Okno z ceną}{5}{}%
+\contentsline {subsection}{\numberline {2.2.3}Okno z błędem}{5}{}%
