@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.12.15)  15 DEC 2024 22:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.12.15)  15 DEC 2024 23:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -257,36 +257,36 @@ LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 71
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [2
 
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}]
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}] [3]
 Rozdzia\l  2.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 87.
+(Font)              <10> on input line 94.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 87.
+(Font)              <7> on input line 94.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 87.
-<images/page_view.png, id=20, 602.25pt x 928.46875pt>
+(Font)              <5> on input line 94.
+<images/page_view.png, id=23, 602.25pt x 928.46875pt>
 File: images/page_view.png Graphic file (type png)
 <use images/page_view.png>
-Package pdftex.def Info: images/page_view.png  used on input line 98.
+Package pdftex.def Info: images/page_view.png  used on input line 105.
 (pdftex.def)             Requested size: 407.66833pt x 628.51695pt.
-[3
+[4
 
 ]
-<images/price_view.png, id=27, 966.61125pt x 608.2725pt>
+<images/price_view.png, id=30, 966.61125pt x 608.2725pt>
 File: images/price_view.png Graphic file (type png)
 <use images/price_view.png>
-Package pdftex.def Info: images/price_view.png  used on input line 104.
+Package pdftex.def Info: images/price_view.png  used on input line 111.
 (pdftex.def)             Requested size: 407.66833pt x 256.54008pt.
- [4 <./images/page_view.png>]
-<images/error_view.png, id=32, 966.61125pt x 608.2725pt>
+ [5 <./images/page_view.png>]
+<images/error_view.png, id=35, 966.61125pt x 608.2725pt>
 File: images/error_view.png Graphic file (type png)
 <use images/error_view.png>
-Package pdftex.def Info: images/error_view.png  used on input line 110.
+Package pdftex.def Info: images/error_view.png  used on input line 117.
 (pdftex.def)             Requested size: 407.66833pt x 256.54008pt.
- [5 <./images/price_view.png> <./images/error_view.png>]
+ [6 <./images/price_view.png> <./images/error_view.png>]
 Rozdzia\l  3.
-[6
+[7
 
 ] (./Report.aux)
  ***********
@@ -297,16 +297,16 @@ L3 programming layer <2024-01-22>
 Here is how much of TeX's memory you used:
  3695 strings out of 474222
  61712 string characters out of 5748732
- 1929975 words of memory out of 5000000
+ 1930975 words of memory out of 5000000
  25898 multiletter control sequences out of 15000+600000
  614311 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,8n,65p,274b,355s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb>
-Output written on Report.pdf (7 pages, 1400294 bytes).
+Output written on Report.pdf (8 pages, 1403685 bytes).
 PDF statistics:
- 73 PDF objects out of 1000 (max. 8388607)
- 41 compressed objects within 1 object stream
+ 76 PDF objects out of 1000 (max. 8388607)
+ 43 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

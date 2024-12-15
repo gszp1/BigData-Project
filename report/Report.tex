@@ -66,6 +66,13 @@ aplikacji webowych, komunikacji pomiędzy serwisami,architektury oprogramowania 
 przetwarzania danych. W celu zrealizowania przewidywanych funkcjonalności, aplikacja została
 podzielona na cztery komponenty, każdy z nich odpowiedzialny za realizację innego aspektu
 aplikacji.
+\section{Komponenty}
+\begin{itemize}
+    \item Aplikacja kliencka --- Interfejs graficzny użytkownika.
+    \item Pośrednik --- Komponent pośredniczący w komunikacji pomiędzy aplikacją kliencką i serwisem predykcyjnym
+    \item Komponent komunikacyjny --- Komponent zawierający szyny danych, które są wykorzystywane do dostarczania i odbierania informacji od serwisu predykcyjnego
+    \item Serwis predykcyjny --- Komponent dokonujący predykcji na podstawie dostarczonych danych, z wykorzytaniem nauczonego modelu.
+\end{itemize}
 \section{Wykorzystane technologie}
 \begin{itemize}
     \item Java --- Obiektowy język programowania.
@@ -111,16 +118,24 @@ middleware za pośrednictwem protokołu \textbf{HTTP}\footnote{HyperText Transfe
     \caption{Widok okna z błędem}
 \end{figure}
 
-\chapter{Komponent pośredniczący}
-\section{Opis}
+\chapter{Komponent pośredniczący i komunikacyjny}
+\section{Komponent pośredniczący}
+\subsection{Opis}
 Komponent pośrediczący pełni rolę pośrednika pomiędzy aplikacją kliencką i serwisem predykcyjnym.
 Otrzymywane od \textbf{frontendu}\footnote{Część aplikacji, z którą użytkownik wchodzi w bezpośednią interakcję, w tym wszystko co widzi oraz elementy wizualne i interaktywne.}
 dane w formie \textbf{JSON}\footnote{JavaScript Object Notation --- format danych zapewniający kompaktowe rozmiary i jest czytelny dla ludzi i maszyn.}
 są w tym komponencie przetwarzane na wiadomości w formacie odpowiadającym wejściu modelu, z uwzględnieniem procesu \textbf{kodowania liczbowego}\footnote{
 Technika zamiany wartości danych tekstowych na wartości liczbowe, poprzez przypisanie unikalnej liczby każdej unikalnej wartości tekstowej.
 } pól. Otrzymane
-w tym procesie wiadomości zapisywane są na temat wejściowy Kafki. Pośrednik jest również odpowiedzialny za odczytywanie danych z tematu wyjściowego i
+w tym procesie wiadomości zapisywane są na \textbf{temat}\footnote{Podstawowy komponent Apache Kafka służący do kategoryzacji napływających wiadomości.}
+ wejściowy Kafki. Pośrednik jest również odpowiedzialny za odczytywanie danych z tematu wyjściowego i
 przekazywanie uzyskanych z nich informacji do klienta.
-\end{document}
+\section{Komponent komunikacyjny}
+\subsection{Opis}
+Komponent komunikacyjny odpowiedzialny jest za transport danych pomiędzy komponentem pośredniczącym i serwisem predykcyjnym.
+Wykorzystuje w tym celu skonteneryzowany \textbf{broker}\footnote{Serwer Apache Kafka zawierający dane należace do tematów i partycji, na które może być podzielony temat}
+wiadomości Apache Kafka wraz z dwoma tematami input oraz output, wykorzystywanych
+odpowiednio do gromadzenia danych odczytywanych przez serwis predykcyjny i gromadzenia danych odczytywanych przez pośrednika.
+Do zarządzania brokerem wykorzystywany jest Apache Zookeeper.
 
-\chapter{}
+\end{document}
