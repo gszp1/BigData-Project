@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1734289177.39755 "/home/mateusz/Code/BigData-Project/report/Report.tex" "Report.pdf" "Report" 1734289177.61218 0
+["pdflatex"] 1734289442.66277 "/home/mateusz/Code/BigData-Project/report/Report.tex" "Report.pdf" "Report" 1734289442.8857 0
   "/etc/texmf/web2c/texmf.cnf" 1734270836.95328 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/mateusz/Code/BigData-Project/report/Report.tex" 1734289177.25949 1103 c46f8b6fe7e5524dd51eb801994bd3be ""
+  "/home/mateusz/Code/BigData-Project/report/Report.tex" 1734289442.52578 1107 7ac30c373a3faae3959bbbc61e8a26dd ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1728.tfm" 1136768653 3584 ad49a18d8515beef6d92d4d3f197d0fd ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1200.tfm" 1136768653 3584 f80ddd985bd00e29e9a6047ebd9d4781 ""
@@ -37,8 +37,8 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1734270845.88133 5472669 54eaf61a88b6b7896ebd0dac973cb29c ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1734270914 8213921 86773c4082de803c2b38f4304ba47552 ""
-  "Report.aux" 1734289177.59249 131 962aafbe3c46096475628b1fc8024583 "pdflatex"
-  "Report.tex" 1734289177.25949 1103 c46f8b6fe7e5524dd51eb801994bd3be ""
+  "Report.aux" 1734289442.86478 131 962aafbe3c46096475628b1fc8024583 "pdflatex"
+  "Report.tex" 1734289442.52578 1107 7ac30c373a3faae3959bbbc61e8a26dd ""
   "images/project_logo.png" 1734172385.53329 21301 ed3077f5f543b0c05b9208228daa3e07 ""
   "images/university_logo.jpg" 1734288060.68306 12962 934d2aedef0670688e0b2144ec94954d ""
   (generated)
