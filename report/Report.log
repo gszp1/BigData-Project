@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.12.15)  16 DEC 2024 01:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.12.15)  16 DEC 2024 01:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -276,40 +276,45 @@ File: diagrams/use_case_diagram.png Graphic file (type png)
 <use diagrams/use_case_diagram.png>
 Package pdftex.def Info: diagrams/use_case_diagram.png  used on input line 91.
 (pdftex.def)             Requested size: 452.9679pt x 317.60535pt.
+<diagrams/sequence_of_events_diagram.png, id=24, 773.89125pt x 644.4075pt>
+File: diagrams/sequence_of_events_diagram.png Graphic file (type png)
+<use diagrams/sequence_of_events_diagram.png>
+Package pdftex.def Info: diagrams/sequence_of_events_diagram.png  used on input line 97.
+(pdftex.def)             Requested size: 452.9679pt x 377.17845pt.
 [3
 
- <./diagrams/use_case_diagram.png>]
+ <./diagrams/use_case_diagram.png>] [4 <./diagrams/sequence_of_events_diagram.png>]
 Rozdzia\l  3.
-[4
+[5
 
 ]
-<images/page_view.png, id=31, 602.25pt x 928.46875pt>
+<images/page_view.png, id=36, 602.25pt x 928.46875pt>
 File: images/page_view.png Graphic file (type png)
 <use images/page_view.png>
-Package pdftex.def Info: images/page_view.png  used on input line 121.
+Package pdftex.def Info: images/page_view.png  used on input line 125.
 (pdftex.def)             Requested size: 407.66833pt x 628.51695pt.
-<images/price_view.png, id=32, 966.61125pt x 608.2725pt>
+<images/price_view.png, id=37, 966.61125pt x 608.2725pt>
 File: images/price_view.png Graphic file (type png)
 <use images/price_view.png>
-Package pdftex.def Info: images/price_view.png  used on input line 127.
+Package pdftex.def Info: images/price_view.png  used on input line 131.
 (pdftex.def)             Requested size: 407.66833pt x 256.54008pt.
- [5 <./images/page_view.png>]
-<images/error_view.png, id=37, 966.61125pt x 608.2725pt>
+ [6 <./images/page_view.png>]
+<images/error_view.png, id=43, 966.61125pt x 608.2725pt>
 File: images/error_view.png Graphic file (type png)
 <use images/error_view.png>
-Package pdftex.def Info: images/error_view.png  used on input line 133.
+Package pdftex.def Info: images/error_view.png  used on input line 137.
 (pdftex.def)             Requested size: 407.66833pt x 256.54008pt.
- [6 <./images/price_view.png> <./images/error_view.png>]
+ [7 <./images/price_view.png> <./images/error_view.png>]
 Rozdzia\l  4.
-[7
-
-]
-Rozdzia\l  5.
 [8
 
 ]
-Rozdzia\l  6.
+Rozdzia\l  5.
 [9
+
+]
+Rozdzia\l  6.
+[10
 
 ] (./Report.aux)
  ***********
@@ -318,18 +323,18 @@ L3 programming layer <2024-01-22>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3702 strings out of 474222
- 61963 string characters out of 5748732
+ 3709 strings out of 474222
+ 62284 string characters out of 5748732
  1931975 words of memory out of 5000000
- 25905 multiletter control sequences out of 15000+600000
+ 25912 multiletter control sequences out of 15000+600000
  614311 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,8n,65p,274b,355s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,8n,65p,277b,355s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb>
-Output written on Report.pdf (10 pages, 1438561 bytes).
+Output written on Report.pdf (11 pages, 1475971 bytes).
 PDF statistics:
- 84 PDF objects out of 1000 (max. 8388607)
- 47 compressed objects within 1 object stream
+ 89 PDF objects out of 1000 (max. 8388607)
+ 49 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

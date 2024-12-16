@@ -138,6 +138,11 @@ INPUT ./diagrams/use_case_diagram.png
 INPUT ./diagrams/use_case_diagram.png
 INPUT ./diagrams/use_case_diagram.png
 INPUT ./diagrams/use_case_diagram.png
+INPUT ./diagrams/sequence_of_events_diagram.png
+INPUT ./diagrams/sequence_of_events_diagram.png
+INPUT ./diagrams/sequence_of_events_diagram.png
+INPUT ./diagrams/sequence_of_events_diagram.png
+INPUT ./diagrams/sequence_of_events_diagram.png
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr12.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx12.tfm
 INPUT ./images/page_view.png
