@@ -83,7 +83,17 @@ dla aplikacji klienckiej oraz pośrednika zostały zdefiniowane za pomocą
 plików \textbf{Dockerfile}\footnote{Plik tekstowy zawierający zestaw instrukcji do zbudowania obrazu Docker.},
 natomiast dla komponentu komunikacyjnego wykorzystano gotowe obrazy Apache Kafka i Zookeeper z rejestru Docker.io.\\[0cm]
 
+% chapter 2 - diagrams
+\chapter{Diagramy}
+\section{Diagram przypadków użycia}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{diagrams/use_case_diagram.png}
+    \caption{Przebieg interakcji użytkownika z aplikacją}
+\end{figure}
+\section{Diagram sekwencji zdarzeń}
 
+% chapter 3 - frontend
 \chapter{Aplikacja kliencka}
 \section{Opis}
 Aplikacja kliencka stanowi pojedynczą stronę dostępną za pośrednictwem przeglądarki,
@@ -157,20 +167,14 @@ Do zarządzania brokerem wykorzystywany jest Apache Zookeeper.
 
 \chapter{Serwis predykcyjny}
 \section{Opis}
+    Zadaniem serwisu predykcyjnego jest dokonanie predykcji ceny samochodu na podstawie dostarczonego zestawu cech.
+    W tym celu wykorzystuje gotowy, zapisany model przygotowany przy użyciu modułu SparkML.\@
+    Dane przekazywane do modelu są odczytywane z tematu input za pomocą frameworka Spark. Cena zwrócona przez
+    model zostaje zapisana na temat wyjściowy output.
 \section{Technologie}
 \begin{itemize}
     \item Python --- Język skryptowy. 
     \item Apache Spark --- Framework do sprawnego przetwarzania zbiorów danych w pamięci.
     \item Apache SparkML --- Moduł Apache Spark przeznaczony do uczenia maszynowego.
 \end{itemize}
-
-
-\chapter{Diagramy}
-\section{Diagram przypadków użycia}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{diagrams/use_case_diagram.png}
-    \caption{Przebieg interakcji użytkownika z aplikacją}
-\end{figure}
-\section{Diagram sekwencji zdarzeń}
 \end{document}
