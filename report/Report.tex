@@ -8,6 +8,16 @@
 \usepackage[a4paper, margin=1in, top=0.5in, bottom=1in]{geometry}
 \usepackage{footnote}
 \usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    frame=single,
+    breaklines=true
+}
 
 \setlength{\parindent}{1cm}
 \setlength{\parskip}{0cm}
@@ -73,15 +83,56 @@ aplikacji.
     \item Komponent komunikacyjny --- Komponent zawierający szyny danych, które są wykorzystywane do dostarczania i odbierania informacji od serwisu predykcyjnego
     \item Serwis predykcyjny --- Komponent dokonujący predykcji na podstawie dostarczonych danych, z wykorzytaniem nauczonego modelu.
 \end{itemize}
+
 \section{Konteneryzacja}
 Wszystkie komponenty zostały skonteneryzowane za pomocą narzędzi
-\textbf{Docker}\footnote{Narzędzie do tworzenia, uruchamiania i zarządzania aplikacjami w izolowanych środowiskach zwanych kontnerami.}
+\textbf{Docker}\footnote{Narzędzie do tworzenia, uruchamiania i zarządzania aplikacjami w izolowanych środowiskach zwanych kontenerami.}
 i \textbf{Docker Compose}\footnote{Narzędzie usprawniające zarządzanie wieloma kontenerami jednocześnie.}, co pozwala na uruchomienie projektu
 bez konieczności dodatkowej konfiguracji.\ \textbf{Obrazy}\footnote{Gotowy do uruchomienia szablon do tworzenia kontenerów, zawierający system plików, aplikację i jej zależności.}
- \textbf{kontenerów}\footnote{Lekkie, izolowane środowisko uruchomieniowe, które zawiera aplikację wraz z jej zależnościami. }
+\textbf{kontenerów}\footnote{Lekkie, izolowane środowisko uruchomieniowe, które zawiera aplikację wraz z jej zależnościami.}
 dla aplikacji klienckiej oraz pośrednika zostały zdefiniowane za pomocą
 plików \textbf{Dockerfile}\footnote{Plik tekstowy zawierający zestaw instrukcji do zbudowania obrazu Docker.},
-natomiast dla komponentu komunikacyjnego wykorzystano gotowe obrazy Apache Kafka i Zookeeper z rejestru Docker.io.\\[0cm]
+natomiast dla komponentu komunikacyjnego wykorzystano gotowe obrazy Apache Kafka i Zookeeper z rejestru Docker.io.
+\section{Sposób uruchomienia}
+\begin{enumerate}
+\item Zainstalować Docker i Docker Compose.
+\item Aplikacja kliencka --- Otworzyć katalog \texttt{frontend} i wewnątrz niego uruchomić skrypt \texttt{run.sh} lub uruchomić ręcznie komendy w terminalu. Wyłączenia kontenera można dokonać skryptem \texttt{clean.sh}.
+\begin{itemize}
+\item Skrypt \texttt{run.sh}:
+\begin{lstlisting}[language=bash]
+#!/bin/bash
+
+# Builds docker image from local Dockerfile
+# and sets image name to "frontend-image"
+docker build -t frontend-image .
+
+# Creates and runs container with name "frontend" from frontend-image
+# in detached mode and container-host port mapping to 9091
+docker run --name frontend -d -p 9091:9091 frontend-image
+\end{lstlisting}
+
+\item Skrypt \texttt{clean.sh}:
+\begin{lstlisting}[language=bash]
+#!/bin/bash
+
+# Stops and removes the "frontend" container
+docker stop frontend
+docker rm frontend
+\end{lstlisting}
+
+\end{itemize}
+\item Pozostałe komponenty --- Otworzyć katalog projektu i uruchomić komendę docker compose up.
+Do wyłączenia kontenerów należy użyć komendy docker compose down.
+\begin{lstlisting}
+# Run containers
+docker compose up
+
+# Stop containers
+docker compose down
+\end{lstlisting}
+    
+\end{enumerate}
+
 
 % chapter 2 - diagrams
 \chapter{Diagramy}
@@ -97,6 +148,8 @@ natomiast dla komponentu komunikacyjnego wykorzystano gotowe obrazy Apache Kafka
     \includegraphics[width=1\textwidth]{diagrams/sequence_of_events_diagram.png}
     \caption{Przebieg operacji komponentów i działań użytkownika podczas procesu predykcji ceny samochodu}
 \end{figure}
+
+
 % chapter 3 - frontend
 \chapter{Aplikacja kliencka}
 \section{Opis}
