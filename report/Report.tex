@@ -1,4 +1,5 @@
 \documentclass[12pt, a4paper]{report}
+\usepackage{minted}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[polish]{babel}
@@ -10,6 +11,9 @@
 \usepackage{float}
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{longtable}
 
 \lstset{
     basicstyle=\ttfamily\small,
@@ -221,6 +225,170 @@ Do zarządzania brokerem wykorzystywany jest Apache Zookeeper.
     \item Apache Zookeeper --- Usługa koordynacyjna systemów rozproszonych.
 \end{itemize}
 
+\chapter{Przygotowanie danych}
+\section{Opis}
+    Model jest skuteczny, gdy dane na których się go trenuje są odpowiednio przygotowane. Początkowo należy przeanalizować potencjalne zagrożenia w postaci braków poszczególnych wartości w polach danych oraz wartości odstających, mogących zniekształcić miary statystyczne. Na końcu należy zfaktoryzować, a zatem znumeryzować dane kategoryczne tak aby model mógł się na nich uczyć.
+
+\section{Wizualizacja danych}
+    \subsection*{Kilka wykresów pokazujących zbiór danych}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/avg_car_price_by_brand.png}
+    \caption{Średnia cena pojazdu danej marki}
+    \end{figure}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/avg_mileage_by_car_brand.png}
+    \caption{Średnia ilość przejechanych mil pojazdów danej marki}
+    \end{figure}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/density_price.png}
+    \caption{Wykres gęstości cen pojazdów, widać że najwięcej jest ich w okolicach 17 tyś. USD}
+    \end{figure}
+\section{Puste pola}
+    Postanowiliśmy usunąć puste pola zamiast stosować inne metody sztuczneg ich wypełniania na przykład średnią, ponieważ zestaw danych jest obszerny i usunięcie próbek z pustymi wartościami nie odbije się na dokładności modelu.
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+Przed usunięciem wartości odstających   & 188533 \\ \hline
+Po usunięciu wartości odstających       & 162610 \\ \hline
+\end{tabular}
+\caption{Wielkość zbioru danych przed i po usunięciu wartości odstających}
+\label{tab:wielkosc_zbioru}
+\end{table}
+    
+\section{Zestaw danych z wartościami odstającymi}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/boxplots_with_outlires.png}
+    \caption{Niektóre wartości są zbyt duże, należy się ich pozbyć}
+\end{figure}
+\section{Wykrywanie i usuwanie wartości odstających za pomocą metody IQR}
+
+Aby wykryć i usunąć wartości odstające w zbiorze danych na podstawie kolumn \texttt{price} oraz \texttt{milage}, wykonaliśmy następujące kroki:
+
+\subsection*{1. Obliczenie kwartyli}
+Pierwszy kwartyl ($Q_1$) oraz trzeci kwartyl ($Q_3$) wyznaczane są dla każdej kolumny. Odpowiadają one 25. i 75. percentylowi:
+\[
+Q_1 = \text{25. percentyl}, \quad Q_3 = \text{75. percentyl}
+\]
+\subsection*{2. Obliczenie rozstępu międzykwartylowego (IQR)}
+Rozstęp międzykwartylowy (IQR) oblicza się jako:
+\[
+IQR = Q_3 - Q_1
+\]
+\subsection*{3. Definiowanie granic wartości odstających}
+Wartości odstające to te, które znajdują się poza przedziałem:
+\[
+\text{Dolna granica} = Q_1 - 1.5 \cdot IQR, \quad \text{Górna granica} = Q_3 + 1.5 \cdot IQR
+\]
+Dla kolumn \texttt{price} oraz \texttt{milage} wyznacza się odpowiednio:
+\[
+\text{Dolna granica}_{\text{price}} = Q_{1,\text{price}} - 1.5 \cdot IQR_{\text{price}}, \quad \text{Górna granica}_{\text{price}} = Q_{3,\text{price}} + 1.5 \cdot IQR_{\text{price}}
+\]
+\[
+\text{Dolna granica}_{\text{milage}} = Q_{1,\text{milage}} - 1.5 \cdot IQR_{\text{milage}}, \quad \text{Górna granica}_{\text{milage}} = Q_{3,\text{milage}} + 1.5 \cdot IQR_{\text{milage}}
+\]
+\subsection*{4. Filtrowanie wierszy bez wartości odstających}
+Zbiór danych jest filtrowany w taki sposób, aby wartości w kolumnach \texttt{price} oraz \texttt{milage} spełniały następujące warunki:
+\[
+Q_1 - 1.5 \cdot IQR \leq X \leq Q_3 + 1.5 \cdot IQR
+\]
+
+\section{Zestaw danych bez wartości odstających}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/boxplots_without_outlires.png}
+    \caption{Brak lub mała ilość wartości odstających}
+\end{figure}
+\section{Wyodrębnienie znaczących informacji o silniku}
+
+W zestawie danych istniała kolumna o nazwie \texttt{engine}, w której wartości przedstawiały krótki opis silnika, zawierający takie informacje jak liczba koni mechanicznych, pojemność silnika oraz inne cechy. Przykładowy opis to:
+
+\begin{quote}
+\texttt{172.0HP 1.6L 4 Cylinder Engine Gasoline Fuel}
+\end{quote}
+
+Z takiego opisu, za pomocą wyrażeń regularnych, wyodrębniliśmy dwie główne informacje: pojemność silnika oraz liczbę koni mechanicznych. 
+
+Dla przykładu:
+\[
+\texttt{172.0HP 1.6L 4 Cylinder Engine Gasoline Fuel} \quad \rightarrow \quad 1.6, \ 172.0
+\]
+
+\subsection*{Zastąpienie kolumny \texttt{engine} nowymi kolumnami:}
+Po wyodrębnieniu informacji o pojemności silnika oraz liczbie koni mechanicznych, zastąpiliśmy istniejącą kolumnę \texttt{engine} dwiema nowymi kolumnami:
+\begin{itemize}
+    \item \texttt{engine\_horsepower} – zawierającą moc silnika w koniach mechanicznych (HP).
+    \item \texttt{engine\_capacity} – zawierającą pojemność silnika w litrach (L).
+\end{itemize}
+
+\section{Faktoryzacja danych}
+    Modele uczenia maszynowego wymagają danych numerycznych jako wejścia. Wartości tekstowe (kategoryczne) muszą być przekonwertowane na liczby w sposób, który zachowa sens danych, ale jednocześnie nie wprowadzi sztucznej relacji między kategoriami. Do każdej wartości kategorycznej został przypisany numer, następnie dzięki słownikowi zamieniliśmy wszystkie próbki w wektory cech w następujący sposób:
+
+\subsection*{Dane przed faktoryzacją}
+Przykład danych wejściowych przed faktoryzacją:
+
+\begin{lstlisting}[language=json, frame=single, basicstyle=\ttfamily\small, backgroundcolor=\color{lightgray}, stepnumber=1, numbersep=5pt]
+{
+  "brand": "Toyota",
+  "transmission": "Automatic",
+  "fuel_type": "Gasoline",
+  "ext_col": "Red",
+  "int_col": "White",
+  "accident": "No accident",
+}
+\end{lstlisting}
+
+\subsection*{Dane po faktoryzacji}
+Po zastosowaniu faktoryzacji 'Label-Encoding' (przypisaniu liczb do kategorii), dane będą wyglądać następująco:
+
+\begin{lstlisting}[language=json, frame=single, basicstyle=\ttfamily\small, backgroundcolor=\color{lightgray}, stepnumber=1, numbersep=5pt]
+{
+  "brand": 5,
+  "transmission": 0,
+  "fuel_type": 0,
+  "ext_col": 3,
+  "int_col": 5,
+  "accident": 0,
+}
+\end{lstlisting}
+
+\subsection*{Przykładowy wiersz danych po faktoryzacji:}
+
+\begin{longtable}{|l|r|}
+\hline
+\textbf{Nazwa zmiennej} & \textbf{Wartość} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Nazwa zmiennej} & \textbf{Wartość} \\
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+model\_year & 2002 \\
+milage & 143250.0 \\
+price & 4999 \\
+engine\_capacity & 3.9 \\
+engine\_horsepower & 252.0 \\
+brand\_numeric & 17.0 \\
+transmission\_numeric & 0.0 \\
+fuel\_type\_numeric & 0.0 \\
+ext\_col\_numeric & 3.0 \\
+int\_col\_numeric & 1.0 \\
+accident\_numeric & 1.0 \\
+\end{longtable}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/correlation_heatmap.png}
+    \caption{Macierz korelacji wszystkich cech, cechy korelującę się w największym stopniu z ceną: rok produkcji modelu, przebieg samochodu oraz konie mechaniczne}
+\end{figure}
 
 \chapter{Serwis predykcyjny}
 \section{Opis}
@@ -234,4 +402,10 @@ Do zarządzania brokerem wykorzystywany jest Apache Zookeeper.
     \item Apache Spark --- Framework do sprawnego przetwarzania zbiorów danych w pamięci.
     \item Apache SparkML --- Moduł Apache Spark przeznaczony do uczenia maszynowego.
 \end{itemize}
+
+\section{Wybór modelu}
+    Podczas wyboru modelu kierowaliśmy się tym jak zostały zfaktoryzowane dane. Dokonaliśmy tego korzystając z 'Label encoding', czyli przypisując unikalną wartość do każdej danej kategorycznej, na przykład \texttt{"BMW" $\rightarrow$ 0}, \texttt{"Audi" $\rightarrow$ 1}. \\
+    W tym przypadku modele na bazie regresii liniowej nie będą skuteczne, ponieważ takie przypisanie może prowadzić do błędnych założeń o istnieniu relacji porównawczych między kategoriami np. różnica między 0 a 1 jest taka sama jak między 1 a 2, co niekoniecznie ma sens w przypadku zmiennych kategorycznych.\\
+    Rozwiązaniem będą modele bazującę na drzewach, z których do testowania wybraliśmy Drzewo decyzyjne oraz Las losowy.
+
 \end{document}
