@@ -1,10 +1,8 @@
-from ensurepip import bootstrap
-from kafka import KafkaProducer
-from pyspark.sql import SparkSession, Row
+from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, from_json, to_json, struct, rand
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DoubleType, DecimalType
-from pyspark.ml import PipelineModel
-from pyspark.ml.feature import IndexToString, StringIndexerModel
+from pyspark.ml.regression import RandomForestRegressionModel
+from pyspark.ml.feature import VectorAssembler
 
 if __name__ == "__main__":
     
@@ -52,10 +50,17 @@ if __name__ == "__main__":
         StructField("accident_numeric", IntegerType(), True)
     ])
     
+    # Define output schema
     output_schema = StructType([
         StructField("tag", StringType(), True),
         StructField("price", DecimalType(), True)
     ])
+    
+    # Model path
+    model_path = "./prediction_models/RF_best"
+    
+    # Load model
+    model = RandomForestRegressionModel.load(model_path)
     
     #### Script functionality ####
     
@@ -76,27 +81,25 @@ if __name__ == "__main__":
     # Get dataframe with only tag
     tag_frame = tdf.select("tag")
     
-    # Get dataframe with all fields excluding tag
-    data_frame = tdf.drop("tag")
+    # Assemble features into a single vector column
+    feature_columns = ["model_year", "milage", "engine_capacity", "engine_horsepower", 
+                "brand_numeric", "transmission_numeric", 
+                "fuel_type_numeric", "ext_col_numeric", 
+                "int_col_numeric", "accident_numeric"]
+    assembler = VectorAssembler(inputCols=feature_columns, outputCol="features")
+    vectorized_data_frame = assembler.transform(tdf)
     
-    parsed_df = tag_frame.withColumn("price", (rand() * (100000 - 1000) + 1000))
+    # Get result of prediction model for data_frame
+    prediction_result = model.transform(vectorized_data_frame)
+    
+    # Create data frame with tag and price
+    parsed_df = prediction_result.select("tag", col("prediction").alias("price"))
+    
+    # Create output data_frame
     output_df = parsed_df.select(to_json(struct(col("tag"), col("price"))).alias("value"))
+    
     ## Save Data ##
     
-    # Write tag value to console
-    tag_frame_sink = tag_frame \
-        .writeStream \
-        .outputMode("append") \
-        .format("console") \
-        .start()
-    
-    # Write data frame to console
-    data_frame_sink = data_frame \
-        .writeStream \
-        .outputMode("append") \
-        .format("console") \
-        .start()
-        
     # Write key-value data to output topic
     ds = output_df \
         .selectExpr("CAST(value AS STRING) as value") \
@@ -105,6 +108,4 @@ if __name__ == "__main__":
         .options(**kafka_producer_options) \
         .start()
     
-    tag_frame_sink.awaitTermination()
-    data_frame_sink.awaitTermination()
     ds.awaitTermination()
