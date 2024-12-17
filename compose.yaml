@@ -70,7 +70,7 @@ services:
       - "9095:9095"
     environment:
       - PS_BROKER_HOST=kafka
-      - PS_BROKER_PORT=9093
+      - PS_BROKER_PORT=9092
       - PS_KAFKA_INPUT_TOPIC=input
       - PS_KAFKA_OUTPUT_TOPIC=output
       - PS_MODEL_PATH=RF_best
