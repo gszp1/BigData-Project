@@ -28,6 +28,4 @@ ENV PATH="/app/venv/bin:${PATH}"
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 9095
-
 CMD ["python3", "prediction_service.py"]

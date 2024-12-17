@@ -6,7 +6,7 @@ networks:
 
 services:
   zookeeper:
-    image: docker.io/bitnami/zookeeper:3.8.4
+    image: docker.io/bitnami/zookeeper:3.9.0
     container_name: zookeeper
     networks:
       - backend_network
@@ -16,7 +16,7 @@ services:
       - ALLOW_ANONYMOUS_LOGIN=yes
     
   kafka:
-    image: docker.io/bitnami/kafka:3.8.1
+    image: docker.io/bitnami/kafka:3.9.0
     container_name: kafka
     networks:
       - backend_network
@@ -66,8 +66,6 @@ services:
     container_name: prediction_service
     networks:
       - backend_network
-    ports:
-      - "9095:9095"
     environment:
       - PS_BROKER_HOST=kafka
       - PS_BROKER_PORT=9092
@@ -79,7 +77,7 @@ services:
         condition: service_started
 
   kafka-init:
-    image: docker.io/bitnami/kafka:3.8.1
+    image: docker.io/bitnami/kafka:3.9.0
     networks:
       - backend_network
     command: [ "/bin/bash", "-c", "/topics_init.sh"]

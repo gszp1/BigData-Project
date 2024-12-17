@@ -1,6 +1,6 @@
 from pyspark.sql import SparkSession
-# import os
-from pyspark.sql.functions import col, from_json, to_json, struct, rand
+import os
+from pyspark.sql.functions import col, from_json, to_json, struct
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DoubleType, DecimalType
 from pyspark.ml.regression import RandomForestRegressionModel
 from pyspark.ml.feature import VectorAssembler
@@ -10,20 +10,11 @@ if __name__ == "__main__":
     #### Config ####
     
     # Environmental variables
-    # broker_host = os.environ.get(key="PS_BROKER_HOST", default="localhost")
-    # broker_port = os.environ.get(key="PS_BROKER_PORT", default=9093)
-    # kafka_input_topic = os.environ.get(key="PS_KAFKA_INPUT_TOPIC", default="input")
-    # kafka_output_topic = os.environ.get(key="PS_KAFKA_OUTPUT_TOPIC", default="output")
-    # model_path = os.environ.get(key="PS_MODEL_PATH", default="./prediction_models/RF_best")
-   
-    broker_host ="localhost"
-    broker_port =9093
-    kafka_input_topic ="input"
-    kafka_output_topic ="output"
-    model_path ="./prediction_models/RF_best"
-    
-   
-  
+    broker_host = os.environ.get(key="PS_BROKER_HOST", default="localhost")
+    broker_port = os.environ.get(key="PS_BROKER_PORT", default=9093)
+    kafka_input_topic = os.environ.get(key="PS_KAFKA_INPUT_TOPIC", default="input")
+    kafka_output_topic = os.environ.get(key="PS_KAFKA_OUTPUT_TOPIC", default="output")
+    model_path = os.environ.get(key="PS_MODEL_PATH", default="./prediction_models/RF_best")
 
     # Create spark session
     spark = SparkSession.builder \
