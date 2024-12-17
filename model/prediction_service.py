@@ -2,7 +2,7 @@ from ensurepip import bootstrap
 from kafka import KafkaProducer
 from pyspark.sql import SparkSession, Row
 from pyspark.sql.functions import col, from_json, to_json, struct, rand
-from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DecimalType
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DoubleType, DecimalType
 from pyspark.ml import PipelineModel
 from pyspark.ml.feature import IndexToString, StringIndexerModel
 
@@ -40,13 +40,13 @@ if __name__ == "__main__":
     # Define schema
     schema = StructType([
         StructField("tag", StringType(), True),
-        StructField("brand_numeric", IntegerType(), True),
         StructField("model_year", IntegerType(), True),
-        StructField("milage", DecimalType(10, 2), True),
-        StructField("fuel_type_numeric", IntegerType(), True),
-        StructField("engine_capacity", DecimalType(10, 2), True),
-        StructField("engine_horsepower", DecimalType(10, 2), True),
+        StructField("milage", DoubleType(), True),
+        StructField("engine_capacity", DoubleType(), True),
+        StructField("engine_horsepower", DoubleType(), True),
+        StructField("brand_numeric", IntegerType(), True),
         StructField("transmission_numeric", IntegerType(), True),
+        StructField("fuel_type_numeric", IntegerType(), True),
         StructField("ext_col_numeric", IntegerType(), True),
         StructField("int_col_numeric", IntegerType(), True),
         StructField("accident_numeric", IntegerType(), True)
