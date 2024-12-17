@@ -59,6 +59,25 @@ services:
       kafka:
         condition: service_started
 
+  prediction_service:
+    build:
+      context: ./model
+      dockerfile: Dockerfile
+    container_name: prediction_service
+    networks:
+      - backend_network
+    ports:
+      - "9095:9095"
+    environment:
+      - PS_BROKER_HOST=kafka
+      - PS_BROKER_PORT=9093
+      - PS_KAFKA_INPUT_TOPIC=input
+      - PS_KAFKA_OUTPUT_TOPIC=output
+      - PS_MODEL_PATH=RF_best
+    depends_on:
+      kafka:
+        condition: service_started
+
   kafka-init:
     image: docker.io/bitnami/kafka:3.8.1
     networks:

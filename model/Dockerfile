@@ -1,6 +1,6 @@
 FROM ubuntu:24.04
 
-ENV PS_BROKER_HOST=localhost
+ENV PS_BROKER_HOST=kafka
 ENV PS_BROKER_PORT=9093
 ENV PS_KAFKA_INPUT_TOPIC="input"
 ENV PS_KAFKA_OUTPUT_TOPIC="output"
@@ -21,5 +21,7 @@ COPY prediction_service.py .
 COPY requirements.txt .
     
 RUN pip3 install --no-cache-dir -r requirements.txt
+
+EXPOSE 9095
 
 CMD ["python3", "prediction_service.py"]
