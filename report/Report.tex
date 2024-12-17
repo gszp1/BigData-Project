@@ -14,13 +14,13 @@
 \usepackage{amsmath}
 \usepackage{geometry}
 \usepackage{longtable}
+\usepackage{booktabs}
 
 \lstdefinelanguage{json}{
     basicstyle=\ttfamily\small,
     keywordstyle=\color{blue},
     stringstyle=\color{green!50!black},
     commentstyle=\color{gray},
-    numbers=left,
     stepnumber=1,
     numbersep=5pt,
     showstringspaces=false,
@@ -28,7 +28,7 @@
     frame=single,
     morestring=[b]",
     morecomment=[l]{//},
-    moredelim=[s][\color{red}]{:}{,},
+    moredelim=[s][\color{blue}]{:}{,},
     backgroundcolor=\color{lightgray}
 }
 
@@ -421,8 +421,182 @@ accident\_numeric & 1.0 \\
 \end{itemize}
 
 \section{Wybór modelu}
-    Podczas wyboru modelu kierowaliśmy się tym jak zostały zfaktoryzowane dane. Dokonaliśmy tego korzystając z 'Label encoding', czyli przypisując unikalną wartość do każdej danej kategorycznej, na przykład \texttt{"BMW" $\rightarrow$ 0}, \texttt{"Audi" $\rightarrow$ 1}. \\
-    W tym przypadku modele na bazie regresii liniowej nie będą skuteczne, ponieważ takie przypisanie może prowadzić do błędnych założeń o istnieniu relacji porównawczych między kategoriami np. różnica między 0 a 1 jest taka sama jak między 1 a 2, co niekoniecznie ma sens w przypadku zmiennych kategorycznych.\\
-    Rozwiązaniem będą modele bazującę na drzewach, z których do testowania wybraliśmy Drzewo decyzyjne oraz Las losowy.
 
+Podczas wyboru modelu kierowaliśmy się strukturą danych. Skorzystaliśmy z \textbf{Label Encoding}, czyli przypisania unikalnych wartości liczbowych dla każdej kategorii, np.:
+\begin{quote}
+\texttt{"BMW" $\rightarrow$ 0}, \texttt{"Audi" $\rightarrow$ 1}.
+\end{quote}
+
+\noindent W tym przypadku \textbf{modele regresji liniowej} nie są skuteczne, ponieważ takie kodowanie może prowadzić do błędnych założeń o istnieniu relacji liczbowych między kategoriami. Przykładowo:
+\[
+\text{Różnica między 0 a 1} = \text{Różnica między 1 a 2},
+\]
+co nie ma sensu w przypadku zmiennych kategorycznych.
+
+\noindent \textbf{Rozwiązaniem są modele oparte na drzewach decyzyjnych}, takie jak:
+\begin{itemize}
+    \item Drzewo decyzyjne,
+    \item Las losowy.
+\end{itemize}
+
+\section{Testowanie modeli}
+
+\subsection{Las Losowy}
+
+\noindent Do testowania modeli użyliśmy metod z biblioteki \texttt{pyspark.ml.tuning}.  
+Jednym z kluczowych kroków było zdefiniowanie siatki hiperparametrów za pomocą \textbf{ParamGridBuilder}.
+
+\vspace{0.5em}
+
+\noindent \textbf{Definiowanie siatki hiperparametrów:}
+\begin{lstlisting}[caption={Siatka hiperparametrów dla modelu}]
+paramGrid = ParamGridBuilder() \
+    .addGrid(rf.numTrees, [50, 100]) \
+    .addGrid(rf.maxDepth, [5, 10]) \
+    .addGrid(rf.minInstancesPerNode, [1, 2, 4]) \
+    .addGrid(rf.maxBins, [32, 64, 128]) \
+    .addGrid(rf.subsamplingRate, [0.5, 0.7, 1.0]) \
+    .addGrid(rf.featureSubsetStrategy, ['all', 'sqrt', 'log2']) \
+    .build()
+\end{lstlisting}
+
+\vspace{1em}
+
+\noindent \textbf{Tworzenie obiektu ewaluatora:}  
+Aby obliczyć dokładność modelu według metryki RMSE (Root Mean Squared Error), użyliśmy \texttt{RegressionEvaluator}.
+
+\begin{lstlisting}[caption={Ewaluator dla metryki RMSE}]
+evaluator_rmse = RegressionEvaluator(
+    labelCol="price",
+    predictionCol="prediction",
+    metricName="rmse"
+)
+\end{lstlisting}
+
+\vspace{1em}
+
+\noindent \textbf{Walidacja krzyżowa:}  
+W celu strojenia hiperparametrów wykorzystaliśmy \texttt{CrossValidator}, który przeprowadza walidację krzyżową z podziałem na \( K \)-podbiorów.  
+Technika ta polega na:
+\begin{enumerate}
+    \item Podziale danych na \( K \)-podzbiorów (folds),
+    \item Trenowaniu modelu \( K \)-razy na \( K-1 \)-podbiorach,
+    \item Użyciu pozostałego podzbioru do walidacji,
+    \item Uśrednieniu wyników dla ostatecznej oceny modelu.
+\end{enumerate}
+
+\begin{lstlisting}[caption={CrossValidator do walidacji krzyżowej}]
+crossval = CrossValidator(
+    estimator=rf,
+    estimatorParamMaps=paramGrid,
+    evaluator=evaluator_rmse,
+    numFolds=3  # 3-fold cross-validation
+)
+\end{lstlisting}
+
+\vspace{1em}
+
+\noindent \textbf{Uczenie modelu:}  
+Najlepszy model z najmniejszym RMSE został zapisany do zmiennej \texttt{best\_model}.
+
+\begin{lstlisting}[caption={Uczenie modelu i wybór najlepszego}]
+cv_model = crossval.fit(train_data)
+best_model = cv_model.bestModel
+\end{lstlisting}
+
+\subsection*{Najlepsze znalezione parametry Lasu losowego}
+\noindent
+\begin{center}
+\begin{tabular}{l l}
+\toprule
+\textbf{Parametr}             & \textbf{Wartość} \\ 
+\midrule
+NumTrees                      & 100              \\
+MaxDepth                      & 10               \\
+MinInstancesPerNode           & 4                \\
+MaxBins                       & 64               \\
+SubsamplingRate               & 0.5              \\
+FeatureSubsetStrategy         & sqrt             \\
+MaxMemoryInMB                 & 256              \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{1em}
+
+\noindent \textbf{Czas trenowania:}  
+\large{116 minut}
+
+\vspace{1em}
+
+\subsection*{Metryki ewaluacyjne dla powyższych hiperparametrów}
+\begin{center}
+\begin{tabular}{l l}
+\toprule
+\textbf{Metryka}              & \textbf{Wartość} \\ 
+\midrule
+Root Mean Squared Error (RMSE) & 11011.20         \\
+Mean Absolute Error (MAE)     & 7962.28          \\
+R-squared (R\textsuperscript{2}) & 0.6625          \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Drzewo decyzyjne}
+\textbf{Definiowanie siatki hiperparametrów:}
+\begin{lstlisting}[caption={Siatka hiperparametrów dla modelu drzewa decyzujnego}]
+paramGrid = ParamGridBuilder() \
+    .addGrid(dt.maxDepth, [10, 15]) \
+    .addGrid(dt.maxBins, [20, 30, 40]) \
+    .addGrid(dt.minInstancesPerNode, [1, 2, 4]) \
+    .addGrid(dt.minInfoGain, [0.0, 0.1, 0.2]) \
+    .addGrid(dt.maxMemoryInMB, [512, 1024]) \
+    .addGrid(dt.cacheNodeIds, [True, False]) \
+    .addGrid(dt.checkpointInterval, [10, 20]) \
+    .build()
+\end{lstlisting}
+\noindent \textbf{Obiekt ewaluatora oraz walidacji krzyżowej są takie same jak w przypdaku Lasu losowego}
+
+\subsection*{Najlepsze znalezione parametry Drzewa decyzyjnego}
+\noindent
+\begin{center}
+\begin{tabular}{l l}
+\toprule
+\textbf{Parametr}             & \textbf{Wartość} \\ 
+\midrule
+MaxDepth                      & 10               \\
+MaxBins                       & 20               \\
+MinInstancesPerNode           & 4                \\
+MinInfoGain                   & 0.0              \\
+MaxMemoryInMB                 & 512              \\
+CacheNodeIds                  & True             \\
+CheckpointInterval            & 10               \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{1em}
+
+\subsection*{Metryki ewaluacyjne dla powyższych hiperparametrów}
+
+\noindent
+\begin{center}
+\begin{tabular}{l l}
+\toprule
+\textbf{Metryka}              & \textbf{Wartość} \\ 
+\midrule
+Root Mean Squared Error (RMSE) & 11318.40         \\
+Mean Absolute Error (MAE)     & 8143.66          \\
+R-squared (R\textsuperscript{2}) & 0.6434          \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{1em}
+
+\noindent \textbf{Czas trenowania:}  
+\large{66 minut}
+
+\subsection{Podsumowanie}
+    Na podstawie miar ewaluacji obu modeli, Las Losowy ma niewielką przewagę nad Drzewem decyzyjnym, jednak trening tego modelu oraz znalezienie najlepszych parametrów zająło blisko godzinę więcej.
 \end{document}
