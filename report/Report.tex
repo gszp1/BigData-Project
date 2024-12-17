@@ -15,6 +15,23 @@
 \usepackage{geometry}
 \usepackage{longtable}
 
+\lstdefinelanguage{json}{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    stringstyle=\color{green!50!black},
+    commentstyle=\color{gray},
+    numbers=left,
+    stepnumber=1,
+    numbersep=5pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=single,
+    morestring=[b]",
+    morecomment=[l]{//},
+    moredelim=[s][\color{red}]{:}{,},
+    backgroundcolor=\color{lightgray}
+}
+
 \lstset{
     basicstyle=\ttfamily\small,
     keywordstyle=\color{blue},
