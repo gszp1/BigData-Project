@@ -91,7 +91,7 @@ Predykcja cen samochodów używanych''
 % chapter 1 - Introduction
 \chapter{Wstęp}
 \section{Założenia projektowe}
-Celem projektu jest zaimplementowanie aplikacji webowej pozwalającej użytkownikom na predykcję 
+Celem projektu jest zaimplementowanie aplikacji webowej pozwalającej użytkownikowi na predykcję 
 ceny używanego samochodu na podstawie dostarczonego przez niego zestawu cech. Tematyka projektu
 daje możliwość wykorzystania różnorodnych technologii z dziedziny uczenia maszynowego, rozwoju
 aplikacji webowych, komunikacji pomiędzy serwisami, architektury oprogramowania oraz gromadzenia i 
@@ -112,7 +112,7 @@ Wszystkie komponenty zostały skonteneryzowane za pomocą narzędzi
 i \textbf{Docker Compose}\footnote{Narzędzie usprawniające zarządzanie wieloma kontenerami jednocześnie.}, co pozwala na uruchomienie projektu
 bez konieczności dodatkowej konfiguracji.\ \textbf{Obrazy}\footnote{Gotowy do uruchomienia szablon do tworzenia kontenerów, zawierający system plików, aplikację i jej zależności.}
 \textbf{kontenerów}\footnote{Lekkie, izolowane środowisko uruchomieniowe, które zawiera aplikację wraz z jej zależnościami.}
-dla aplikacji klienckiej oraz pośrednika zostały zdefiniowane za pomocą
+dla aplikacji klienckiej, pośrednika oraz serwisu predykcyjnego zostały zdefiniowane za pomocą
 plików \textbf{Dockerfile}\footnote{Plik tekstowy zawierający zestaw instrukcji do zbudowania obrazu Docker.},
 natomiast dla komponentu komunikacyjnego wykorzystano gotowe obrazy Apache Kafka i Zookeeper z rejestru Docker.io.
 \section{Sposób uruchamiania}
@@ -158,7 +158,7 @@ docker compose down
 \section{Dane}
 Do utworzenia modelu predykcyjnego wykorzystany został zestaw danych
  \href{https://www.kaggle.com/datasets/taeefnajib/used-car-price-prediction-dataset}{``Used Car Price Prediction Dataset''}\footnote{https://www.kaggle.com/datasets/taeefnajib/used-car-price-prediction-dataset}
-  z platfromy Kaggle. \\[1cm]
+  z platformy Kaggle. \\[1cm]
 \textbf{Cechy zbioru danych:}
 \begin{itemize}
     \item \textbf{brand} --- Marka lub nazwa firmy produkującej samochody.
@@ -235,7 +235,7 @@ middleware za pośrednictwem protokołu \textbf{HTTP}\footnote{HyperText Transfe
 
 \chapter{Komponent pośredniczący}
 \section{Opis}
-Komponent pośrediczący pełni rolę pośrednika pomiędzy aplikacją kliencką i serwisem predykcyjnym.
+Komponent pośredniczący pełni rolę pośrednika pomiędzy aplikacją kliencką i serwisem predykcyjnym.
 Otrzymywane od \textbf{frontendu}\footnote{Część aplikacji, z którą użytkownik wchodzi w bezpośednią interakcję, w tym wszystko co widzi oraz elementy wizualne i interaktywne.}
 dane w formie \textbf{JSON}\footnote{JavaScript Object Notation --- format danych zapewniający kompaktowe rozmiary i jest czytelny dla ludzi i maszyn.}
 są w tym komponencie przetwarzane na wiadomości w formacie odpowiadającym wejściu modelu, z uwzględnieniem procesu \textbf{kodowania liczbowego}\footnote{
