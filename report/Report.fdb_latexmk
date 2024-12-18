@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1734555856.43735 "/home/mateusz/Code/BigData-Project/report/Report.tex" "Report.pdf" "Report" 1734555857.37018 2
+["pdflatex"] 1734564206.50521 "/home/mateusz/Code/BigData-Project/report/Report.tex" "Report.pdf" "Report" 1734564207.43813 2
   "/etc/texmf/web2c/texmf.cnf" 1734270836.95328 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/mateusz/Code/BigData-Project/report/Report.tex" 1734555855.30993 26020 7833061ecec4f002079f00a7e988123f ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -148,12 +148,12 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1734270845.88133 5472669 54eaf61a88b6b7896ebd0dac973cb29c ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1734270914 8213921 86773c4082de803c2b38f4304ba47552 ""
-  "Report.aux" 1734555857.29295 8462 fa60526cf59796f0c243d0ddbe59ae25 "pdflatex"
-  "Report.out" 1734555857.29295 5506 ac09b8ab6e74621910bcda02f2b077db "pdflatex"
+  "Report.aux" 1734564207.35926 8462 fa60526cf59796f0c243d0ddbe59ae25 "pdflatex"
+  "Report.out" 1734564207.36026 5506 ac09b8ab6e74621910bcda02f2b077db "pdflatex"
   "Report.tex" 1734555855.30993 26020 7833061ecec4f002079f00a7e988123f ""
-  "Report.toc" 1734555857.29395 3088 018a952fe58f7a1ce8b9e0817d03a9ae "pdflatex"
+  "Report.toc" 1734564207.36126 3088 018a952fe58f7a1ce8b9e0817d03a9ae "pdflatex"
   "diagrams/sequence_of_events_diagram.png" 1734310148.67876 55633 15301325efef93e6dc92de08352a6638 ""
-  "diagrams/use_case_diagram.png" 1734555225.34077 40203 0802cff6106280d79a830fff05872f9d ""
+  "diagrams/use_case_diagram.png" 1734564205.10324 40450 ecd2838759dce2e4c666520511e48345 ""
   "images/avg_car_price_by_brand.png" 1734448994.95651 79221 acb18c26cdf2740247fbd76ef26bd43d ""
   "images/avg_mileage_by_car_brand.png" 1734448994.95751 78562 8050002a0fa5ee400d2883f4146bb826 ""
   "images/boxplots_with_outlires.png" 1734448994.95751 37485 8ea034e834222a3c6aa8f4fa2761a83c ""
