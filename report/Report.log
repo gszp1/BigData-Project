@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.12.15)  19 DEC 2024 00:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.12.15)  19 DEC 2024 00:24
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -709,7 +709,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.39 ....2}Drzewo decyzyjne}{21}{subsection.7.4.2}
+l.39 ....2}Drzewo decyzyjne}{22}{subsection.7.4.2}
                                                   % [1
 
 ])
@@ -869,10 +869,6 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `Report.out' has not changed.
 (rerunfilecheck)             Checksum: AC09B8AB6E74621910BCDA02F2B077DB;5506.
  ) 
@@ -892,7 +888,7 @@ texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lm
 r8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fon
 ts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pf
 b></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb>
-Output written on Report.pdf (24 pages, 1900027 bytes).
+Output written on Report.pdf (24 pages, 1900029 bytes).
 PDF statistics:
  588 PDF objects out of 1000 (max. 8388607)
  503 compressed objects within 6 object streams
