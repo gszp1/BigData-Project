@@ -15,6 +15,7 @@
 \usepackage{geometry}
 \usepackage{longtable}
 \usepackage{booktabs}
+\usepackage[colorlinks=true, linkcolor=black, urlcolor=purple]{hyperref}
 
 \lstdefinelanguage{json}{
     basicstyle=\ttfamily\small,
@@ -93,7 +94,7 @@ Predykcja cen samochodów używanych''
 Celem projektu jest zaimplementowanie aplikacji webowej pozwalającej użytkownikom na predykcję 
 ceny używanego samochodu na podstawie dostarczonego przez niego zestawu cech. Tematyka projektu
 daje możliwość wykorzystania różnorodnych technologii z dziedziny uczenia maszynowego, rozwoju
-aplikacji webowych, komunikacji pomiędzy serwisami, architektury oprogramowania oraz bierania i 
+aplikacji webowych, komunikacji pomiędzy serwisami, architektury oprogramowania oraz gromadzenia i 
 przetwarzania danych. W celu zrealizowania przewidywanych funkcjonalności, aplikacja została
 podzielona na cztery komponenty, każdy z nich odpowiedzialny za realizację innego aspektu
 aplikacji.
@@ -114,7 +115,7 @@ bez konieczności dodatkowej konfiguracji.\ \textbf{Obrazy}\footnote{Gotowy do u
 dla aplikacji klienckiej oraz pośrednika zostały zdefiniowane za pomocą
 plików \textbf{Dockerfile}\footnote{Plik tekstowy zawierający zestaw instrukcji do zbudowania obrazu Docker.},
 natomiast dla komponentu komunikacyjnego wykorzystano gotowe obrazy Apache Kafka i Zookeeper z rejestru Docker.io.
-\section{Sposób uruchomienia}
+\section{Sposób uruchamiania}
 \begin{enumerate}
 \item Zainstalować Docker i Docker Compose.
 \item Aplikacja kliencka --- Otworzyć katalog \texttt{frontend} i wewnątrz niego uruchomić skrypt \texttt{run.sh} lub uruchomić ręcznie komendy w terminalu. Wyłączenia kontenera można dokonać skryptem \texttt{clean.sh}.
@@ -153,7 +154,26 @@ docker compose down
 \end{lstlisting}
     
 \end{enumerate}
-
+\newpage
+\section{Dane}
+Do utworzenia modelu predykcyjnego wykorzystany został zestaw danych
+ \href{https://www.kaggle.com/datasets/taeefnajib/used-car-price-prediction-dataset}{``Used Car Price Prediction Dataset''}\footnote{https://www.kaggle.com/datasets/taeefnajib/used-car-price-prediction-dataset}
+  z platfromy Kaggle. \\[1cm]
+\textbf{Cechy zbioru danych:}
+\begin{itemize}
+    \item \textbf{brand} --- Marka lub nazwa firmy produkującej samochody.
+    \item \textbf{mode} --- Model pojazdu.
+    \item \textbf{model\_year} --- Rok produkcji pojazdu.
+    \item \textbf{milage} --- Przebieg samochodu w milach.
+    \item \textbf{fuel\_type} --- Rodzaj paliwa wykorzystywanego przez samochód.
+    \item \textbf{engine} --- Typ silnika.
+    \item \textbf{transmission} --- Typ skrzyni biegów.
+    \item \textbf{ext\_col} --- Kolor zewnętrzny pojazdu.
+    \item \textbf{int\_col} --- Kolor wnętrza pojazdu.
+    \item \textbf{accident} --- Historia wypadków
+    \item \textbf{clean\_title} --- Czy pojazd posiada czysty tytuł własności.
+    \item \textbf{price} --- Cena samochodu według sprzedającego.
+\end{itemize}
 
 % chapter 2 - diagrams
 \chapter{Diagramy}
@@ -232,8 +252,8 @@ przekazywanie uzyskanych z nich informacji do klienta.
 \chapter{Komponent komunikacyjny}
 \section{Opis}
 Komponent komunikacyjny odpowiedzialny jest za transport danych pomiędzy komponentem pośredniczącym i serwisem predykcyjnym.
-Wykorzystuje w tym celu skonteneryzowany \textbf{broker}\footnote{Serwer Apache Kafka zawierający dane należace do tematów i partycji, na które może być podzielony temat}
-wiadomości Apache Kafka wraz z dwoma tematami input oraz output, wykorzystywanych
+Wykorzystuje w tym celu skonteneryzowany \textbf{broker}\footnote{Serwer Apache Kafka zawierający dane należące do tematów i partycji, na które może być podzielony temat.}
+wiadomości Apache Kafka wraz z dwoma tematami: input oraz output, wykorzystywanych
 odpowiednio do gromadzenia danych odczytywanych przez serwis predykcyjny i gromadzenia danych odczytywanych przez pośrednika.
 Do zarządzania brokerem wykorzystywany jest Apache Zookeeper.
 \section{Technologie}
@@ -264,7 +284,7 @@ Do zarządzania brokerem wykorzystywany jest Apache Zookeeper.
     \caption{Wykres gęstości cen pojazdów, widać że najwięcej jest ich w okolicach 17 tyś. USD}
     \end{figure}
 \section{Puste pola}
-    Postanowiliśmy usunąć puste pola zamiast stosować inne metody sztuczneg ich wypełniania na przykład średnią, ponieważ zestaw danych jest obszerny i usunięcie próbek z pustymi wartościami nie odbije się na dokładności modelu.
+    Postanowiliśmy usunąć puste pola zamiast stosować inne metody sztucznego ich wypełniania na przykład średnią, ponieważ zestaw danych jest obszerny i usunięcie próbek z pustymi wartościami nie odbije się na dokładności modelu.
 \begin{table}[h!]
 \centering
 \begin{tabular}{|l|c|}
@@ -480,7 +500,7 @@ W celu strojenia hiperparametrów wykorzystaliśmy \texttt{CrossValidator}, któ
 Technika ta polega na:
 \begin{enumerate}
     \item Podziale danych na \( K \)-podzbiorów (folds),
-    \item Trenowaniu modelu \( K \)-razy na \( K-1 \)-podbiorach,
+    \item Trenowaniu modelu \( K \)-razy na \( K-1 \)-podzbiorach,
     \item Użyciu pozostałego podzbioru do walidacji,
     \item Uśrednieniu wyników dla ostatecznej oceny modelu.
 \end{enumerate}
