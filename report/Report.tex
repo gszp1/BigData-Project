@@ -103,7 +103,7 @@ aplikacji.
     \item Aplikacja kliencka --- Interfejs graficzny użytkownika.
     \item Pośrednik --- Komponent pośredniczący w komunikacji pomiędzy aplikacją kliencką i serwisem predykcyjnym
     \item Komponent komunikacyjny --- Komponent zawierający szyny danych, które są wykorzystywane do dostarczania i odbierania informacji od serwisu predykcyjnego
-    \item Serwis predykcyjny --- Komponent dokonujący predykcji na podstawie dostarczonych danych, z wykorzytaniem nauczonego modelu.
+    \item Serwis predykcyjny --- Komponent dokonujący predykcji na podstawie dostarczonych danych, z wykorzystaniem nauczonego modelu.
 \end{itemize}
 
 \section{Konteneryzacja}
@@ -496,7 +496,7 @@ evaluator_rmse = RegressionEvaluator(
 \vspace{1em}
 
 \noindent \textbf{Walidacja krzyżowa:}  
-W celu strojenia hiperparametrów wykorzystaliśmy \texttt{CrossValidator}, który przeprowadza walidację krzyżową z podziałem na \( K \)-podbiorów.  
+W celu strojenia hiperparametrów wykorzystaliśmy \texttt{CrossValidator}, który przeprowadza walidację krzyżową z podziałem na \( K \)-podzbiorów.  
 Technika ta polega na:
 \begin{enumerate}
     \item Podziale danych na \( K \)-podzbiorów (folds),
